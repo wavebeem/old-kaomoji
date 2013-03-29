@@ -86,8 +86,13 @@ h1 {
     text-align: center;
 
     position: relative;
+    top: 0px;
 
-    -webkit-transition: top 0.10s;
+    -webkit-transition-duration: 0.20s;
+            transition-duration: 0.20s;
+
+    -webkit-transition-property: top;
+            transition-property: top;
 }
 
 .kaomoji:hover {
@@ -102,7 +107,9 @@ h1 {
 
     background-color: #eee;
 
-    -webkit-transition: top 0.10s, box-shadow 0.10s, border-color 0.10s;
+    -webkit-transition-property: top, box-shadow, border-color;
+            transition-property: top, box-shadow, border-color;
+
     box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.50);
     border-color: rgba(0, 0, 0, 0.35);
 }
