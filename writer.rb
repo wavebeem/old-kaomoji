@@ -90,9 +90,12 @@ def kaomoji_items
         } +
         $cgi.div(:class => "group") {
             mojis.map {|moji|
-                $cgi.a(:class  => "kaomoji") {
-                    encode moji.chomp.strip
-                }
+                moji = moji.chomp.strip
+                $cgi.input(
+                    :value => moji,
+                    :type  => "text",
+                    :class => "kaomoji",
+                )
             }.join
         }
     }.join

@@ -62,12 +62,15 @@ h1 {
 
     font-family: sans-serif;
     font-weight: normal;
+    font-size:   16px;
+
+    cursor: pointer;
 
     display: inline-block;
 
     color: #666;
 
-    min-width: 10em;
+    min-width: 5em;
 
     border: 1px solid #ddd;
 
@@ -87,12 +90,23 @@ h1 {
 
     position: relative;
     top: 0px;
+}
 
+.kaomoji:focus {
+    outline: none;
+}
+
+.use-animations .kaomoji {
     -webkit-transition-duration: 0.20s;
             transition-duration: 0.20s;
 
     -webkit-transition-property: top;
             transition-property: top;
+}
+
+.use-animations .kaomoji:active {
+    -webkit-transition-property: top, box-shadow, border-color;
+            transition-property: top, box-shadow, border-color;
 }
 
 .kaomoji:hover {
@@ -106,9 +120,6 @@ h1 {
     top: 3px;
 
     background-color: #eee;
-
-    -webkit-transition-property: top, box-shadow, border-color;
-            transition-property: top, box-shadow, border-color;
 
     box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.50);
     border-color: rgba(0, 0, 0, 0.35);
@@ -194,13 +205,6 @@ a#copyright {
 
 #copyright:hover {
     color: #fff;
-}
-
-#container {
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 }
 
 #container .group {

@@ -3,11 +3,23 @@ function listen(elem, name, callback) {
     elem.addEventListener(name, callback, false);
 }
 
+var slice = [].slice;
+
 function query(s) {
-    return document.querySelectorAll(s);
+    return slice.call(document.querySelectorAll(s));
+}
+
+function selectText(event) {
+    this.select();
 }
 
 listen(window, "DOMContentLoaded", function(event) {
+    document.body.className = "use-animations";
+
+    query(".kaomoji").forEach(function(button) {
+        listen(button, "click", selectText);
+    });
+
     // ZeroClipboard.setDefaults({
     //     moviePath: "lib/ZeroClipboard.swf"
     // });
