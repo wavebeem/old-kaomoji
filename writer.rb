@@ -40,11 +40,31 @@ def body
     }
 end
 
+def footer_text
+    $cgi.p {
+        "Full source code available on " +
+        $cgi.a(:href => "https://github.com/saikobee/kaomoji") {
+            "GitHub"
+        }
+    } +
+    $cgi.p {
+        "Emoticons from " +
+        $cgi.a(:href => "http://www.japaneseemoticons.net/all-japanese-emoticons/") {
+            "Japanese Emoticons"
+        }
+    }
+end
+
+def copyright
+    $cgi.a(:href => "http://saikobee.github.com", :id => "copyright") {
+        "&copy; 2013 Brian Mock"
+    }
+end
+
 def footer
     $cgi.div(:id => "footer") {
-        $cgi.a(:href => "http://saikobee.github.com", :id => "copyright") {
-            "&copy; 2013 Brian Mock"
-        }
+        footer_text +
+        copyright
     }
 end
 
