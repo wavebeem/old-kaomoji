@@ -58,8 +58,6 @@ h1 {
 }
 
 .kaomoji {
-    overflow: hidden;
-
     font-family: sans-serif;
     font-weight: normal;
     font-size:   16px;
@@ -70,7 +68,9 @@ h1 {
 
     color: #666;
 
-    min-width: 5em;
+    min-width: 10em;
+    max-width: 99em;
+    width:     auto;
 
     border: 1px solid #ddd;
 
@@ -97,8 +97,8 @@ h1 {
 }
 
 .use-animations .kaomoji {
-    -webkit-transition-duration: 0.20s;
-            transition-duration: 0.20s;
+    -webkit-transition-duration: 0.10s;
+            transition-duration: 0.10s;
 
     -webkit-transition-property: top;
             transition-property: top;
@@ -111,9 +111,9 @@ h1 {
 
 .kaomoji:hover {
     background-color: #fff;
+
     border-color: rgba(0, 0, 0, 0.50);
     box-shadow: inset 0px 0px 0px 3px #729fcf;
-    /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.50);*/
 }
 
 .kaomoji:active {
@@ -183,6 +183,10 @@ h1 {
 #footer a:hover {
     color: #acd;
     background-color: rgba(255, 255, 255, 0.10);
+}
+
+#footer #copyright:hover {
+    color: #fff;
 }
 
 h1 a,

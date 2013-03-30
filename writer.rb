@@ -7,20 +7,39 @@ $cgi   = CGI.new("html4")
 $moji  = JSON.parse(File.read("kaomoji.json"))
 $coder = HTMLEntities.new(:html4)
 
+DEBUG = if ENV["DEBUG"]
+then ENV["DEBUG"] =~ %r{^true|t|1$}i
+else true
+end
+
 def css href
-    $cgi.link(:rel => "stylesheet", :href => href, :type => "text/css")
-    # $cgi.style(:type => "text/css") { File.read(href) }
+    if DEBUG
+        $cgi.link(
+            :href   => href,
+            :type   => "text/css",
+            :rel    => "stylesheet",
+        )
+    else
+        $cgi.style(:type => "text/css") { File.read(href) }
+    end
 end
 
 def js src
-    $cgi.script(:type => "text/javascript", :src => src)
-    # $cgi.script(:type => "text/javascript") { File.read(src) }
+    if DEBUG
+        $cgi.script(
+            :type   => "text/javascript",
+            :src    => src,
+        )
+    else
+        $cgi.script(:type => "text/javascript") { File.read(src) }
+    end
 end
 
 def viewport
     $cgi.meta(
-        :name => "viewport",
-        :content => "width=device-width, initial-scale=1")
+        :name    => "viewport",
+        :content => "width=device-width, initial-scale=1",
+    )
 end
 
 def head
@@ -92,9 +111,11 @@ def kaomoji_items
             mojis.map {|moji|
                 moji = moji.chomp.strip
                 $cgi.input(
-                    :value => moji,
-                    :type  => "text",
-                    :class => "kaomoji",
+                    :value      => moji,
+                    :size       => "1",
+                    :type       => "text",
+                    :class      => "kaomoji",
+                    :readonly   => "readonly",
                 )
             }.join
         }

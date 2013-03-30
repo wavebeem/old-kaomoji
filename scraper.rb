@@ -40,7 +40,6 @@ end
 def main
     url = "http://www.japaneseemoticons.net/all-japanese-emoticons/"
     doc = Nokogiri::HTML.parse(open(url))
-    # doc = Nokogiri::HTML.parse(DATA)
 
     puts pairs(doc).to_json
 rescue Interrupt
@@ -48,17 +47,3 @@ rescue Interrupt
 end
 
 main
-__END__
-<html>
-<body>
-    <table><tbody><tr>
-        <td>Hi</td>
-        <td>world</td>
-    </tr></tbody></table>
-    <table><tbody><tr>
-        <td>this</td>
-        <td>ok</td>
-        <td></td>
-    </tr></tbody></table>
-</body>
-</html>
