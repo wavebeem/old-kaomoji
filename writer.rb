@@ -46,17 +46,26 @@ def head
     $cgi.meta(:charset => "utf-8") +
     viewport +
     css("style.css") +
-    js("lib/ZeroClipboard.min.js") +
+    # js("lib/ZeroClipboard.min.js") +
+    js("lib/ZeroClipboard.js") +
     js("main.js") +
     $cgi.title { "Kaomoji Selector" }
 end
 
 def body
     $cgi.div(:id => "container") {
+        toast +
         header +
         kaomoji_items +
         footer
     }
+end
+
+def toast
+    $cgi.div(
+        :id     => "toast",
+        :class  => "hidden",
+    ) { "Copied to clipboard" }
 end
 
 def footer_text
@@ -111,6 +120,7 @@ def kaomoji_items
             mojis.map {|moji|
                 moji = moji.chomp.strip
                 $cgi.input(
+                    :"data-clipboard-text" => moji,
                     :value      => moji,
                     :size       => "1",
                     :type       => "text",

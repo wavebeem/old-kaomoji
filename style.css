@@ -109,6 +109,7 @@ h1 {
             transition-property: top, box-shadow, border-color;
 }
 
+.kaomoji.hover,
 .kaomoji:hover {
     background-color: #fff;
 
@@ -116,13 +117,64 @@ h1 {
     box-shadow: inset 0px 0px 0px 3px #729fcf;
 }
 
+.kaomoji.active,
 .kaomoji:active {
+}
+
+.use-push-effect .kaomoji.active,
+.use-push-effect .kaomoji:active {
     top: 3px;
 
     background-color: #eee;
 
     box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.50);
     border-color: rgba(0, 0, 0, 0.35);
+}
+
+#toast {
+    position: fixed;
+
+    top:    10px;
+    right:  10px;
+
+    background-color: rgba(64, 64, 64, 0.80);
+    color: #fff;
+
+    padding:        4px;
+    padding-left:   8px;
+    padding-right:  8px;
+
+    border-radius: 8px;
+
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);
+
+    border: 3px solid #fff;
+
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.50);
+
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size:   18px;
+
+    z-index: 8000;
+
+    -webkit-transition-duration: 0.20s;
+            transition-duration: 0.20s;
+
+    -webkit-transition-property: opacity;
+            transition-property: opacity;
+}
+
+#toast.hidden {
+    top: -20px;
+
+    opacity: 0;
+
+    -webkit-transition-duration: 0.50s;
+            transition-duration: 0.50s;
+
+    -webkit-transition-property: opacity, top;
+            transition-property: opacity, top;
 }
 
 #container {
@@ -167,9 +219,6 @@ h1 {
 
     border-top-left-radius:  2px;
     border-top-right-radius: 2px;
-}
-
-#footer p {
 }
 
 #footer a {
