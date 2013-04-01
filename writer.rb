@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 require "cgi"
 require "json"
-require "htmlentities"
 
 $cgi   = CGI.new("html4")
 $moji  = JSON.parse(File.read("kaomoji.json"))
-$coder = HTMLEntities.new(:html4)
 
 DEBUG = if ENV["DEBUG"]
 then ENV["DEBUG"] =~ %r{^true|t|1$}i
@@ -46,8 +44,6 @@ def head
     $cgi.meta(:charset => "utf-8") +
     viewport +
     css("style.css") +
-    # js("lib/ZeroClipboard.min.js") +
-    js("lib/ZeroClipboard.js") +
     js("main.js") +
     $cgi.title { "Kaomoji Selector" }
 end
@@ -96,10 +92,6 @@ def footer
     }
 end
 
-def encode str
-    $coder.encode str, :basic, :decimal
-end
-
 def header
     $cgi.h1(:id => "header") {
         $cgi.a(:href => "#") {
@@ -120,12 +112,11 @@ def kaomoji_items
             mojis.map {|moji|
                 moji = moji.chomp.strip
                 $cgi.input(
-                    :"data-clipboard-text" => moji,
-                    :value      => moji,
-                    :size       => "1",
-                    :type       => "text",
-                    :class      => "kaomoji",
-                    :readonly   => "readonly",
+                    :value    => moji,
+                    :size     => "1",
+                    :type     => "text",
+                    :class    => "kaomoji",
+                    :readonly => "readonly",
                 )
             }.join
         }
