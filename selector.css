@@ -1,0 +1,84 @@
+#groups {
+    position: fixed;
+
+    /* display: none;*/
+
+    top:    0px;
+    left:   0px;
+
+    padding:  0px;
+    margin:   0px;
+
+    padding-left:   0px;
+    padding-right:  0px;
+
+    border: 3px solid #fff;
+
+    border-top-width:   0px;
+    border-left-width:  0px;
+
+    border-radius: 8px;
+    border-bottom-left-radius:  0px;
+    border-top-left-radius:     0px;
+    border-top-right-radius:    0px;
+
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+
+    z-index: 4000;
+
+    opacity: 0.50;
+}
+
+#groups,
+#groups select {
+    background-color: #333;
+    color: #ccc;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#groups:before {
+    cursor: pointer;
+
+    position: fixed;
+    content: "Jump to...";
+    top:  1px;
+    left: 6px;
+    width: 80px;
+
+    margin:  0px;
+    padding: 0px;
+
+    font-size:  16px;
+    line-height: 16px;
+
+    font-family:
+        "Lucida Grande",
+        "Segoe UI",
+        sans-serif;
+
+    font-weight: bold;
+}
+
+#groups:hover,
+#groups:hover select {
+    background-color: #444;
+    color: #fff;
+}
+
+#groups select {
+    border: none;
+
+    padding: 0px;
+
+    opacity: 0.00;
+
+    width:  90px;
+    height: 22px;
+}
+
+#groups select:focus {
+    outline: none;
+}

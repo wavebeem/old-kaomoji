@@ -1,4 +1,3 @@
-(function() {
 "use strict";
 
 function listen(elem, name, callback) {
@@ -59,7 +58,7 @@ listen(window, "DOMContentLoaded", function(event) {
         "use-animations",
     ]);
 
-    query(".kaomoji").forEach(function(button) {
+    query("input.kaomoji").forEach(function(button) {
         listen(button, "click", selectText);
     });
 
@@ -79,4 +78,3 @@ listen(window, "DOMContentLoaded", function(event) {
         }
     });
 });
-})();

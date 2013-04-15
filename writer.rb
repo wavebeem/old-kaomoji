@@ -5,10 +5,15 @@ require "json"
 $cgi   = CGI.new("html4")
 $moji  = JSON.parse(File.read("kaomoji.json"))
 
-DEBUG = if ENV["DEBUG"]
-then ENV["DEBUG"] =~ %r{^true|t|1$}i
-else true
+def env_bool? name, fallback=false
+    if ENV[name]
+    then !!(ENV[name] =~ %r{^true|t|1$})
+    else fallback
+    end
 end
+
+DEBUG = env_bool? "DEBUG", true
+EMBED = env_bool? "EMBED", false
 
 def css href
     if DEBUG
@@ -44,8 +49,17 @@ def head
     $cgi.meta(:charset => "utf-8") +
     viewport +
     css("style.css") +
+    if EMBED
+    then css("embed.css")
+    else ""
+    end +
+    css("selector.css") +
     css("scrollbars.css") +
     js("main.js") +
+    if EMBED
+    then js("ext.js")
+    else ""
+    end +
     $cgi.title { "Kaomoji Selector" }
 end
 
@@ -54,18 +68,13 @@ def body
         kaomoji_groups
     } +
     $cgi.div(:id => "container") {
-        toast +
         # header +
         kaomoji_items +
-        footer
+        if EMBED
+        then ""
+        else footer
+        end
     }
-end
-
-def toast
-    $cgi.div(
-        :id     => "toast",
-        :class  => "hidden",
-    ) { "Copied to clipboard" }
 end
 
 def footer_text
@@ -114,17 +123,27 @@ def kaomoji_items
         } +
         $cgi.div(:class => "group") {
             mojis.map {|moji|
-                moji = moji.chomp.strip
-                $cgi.input(
-                    :value    => moji,
-                    :size     => "1",
-                    :type     => "text",
-                    :class    => "kaomoji",
-                    :readonly => "readonly",
-                )
+                kaomoji moji.chomp.strip
             }.join
         }
     }.join
+end
+
+def kaomoji txt
+    if EMBED
+        $cgi.button(
+            :type   => "button",
+            :class  => "kaomoji",
+        ) { txt }
+    else
+        $cgi.input(
+            :value    => txt,
+            :size     => "1",
+            :type     => "text",
+            :class    => "kaomoji",
+            :readonly => "readonly",
+        )
+    end
 end
 
 def kaomoji_groups

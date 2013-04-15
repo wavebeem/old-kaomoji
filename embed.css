@@ -1,0 +1,30 @@
+html {
+    background-color: #eee;
+}
+
+.kaomoji {
+    height: auto;
+}
+
+#container {
+    max-width: none;
+}
+
+#container .group {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.kaomoji {
+    background-color: #f2f2f2;
+    border-color: #ddd;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #eee !important;
+}
+
+::-webkit-scrollbar-thumb {
+    border-color: #eee !important;
+}
