@@ -44,14 +44,18 @@ def head
     $cgi.meta(:charset => "utf-8") +
     viewport +
     css("style.css") +
+    css("scrollbars.css") +
     js("main.js") +
     $cgi.title { "Kaomoji Selector" }
 end
 
 def body
+    $cgi.div(:id => "groups") {
+        kaomoji_groups
+    } +
     $cgi.div(:id => "container") {
         toast +
-        header +
+        # header +
         kaomoji_items +
         footer
     }
@@ -121,6 +125,17 @@ def kaomoji_items
             }.join
         }
     }.join
+end
+
+def kaomoji_groups
+    $cgi.select(:id => "picker") {
+        $cgi.option(:value => "_", :disabled => "true") { "Jump to..." } +
+        $moji.map {|group, mojis|
+            $cgi.option(:value => group.downcase) {
+                group.capitalize
+            }
+        }.join
+    }
 end
 
 def html
