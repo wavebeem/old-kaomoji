@@ -28,3 +28,26 @@ html {
 ::-webkit-scrollbar-thumb {
     border-color: #eee !important;
 }
+
+#jump-to {
+    color: #aaa;
+}
+
+#groups:hover #jump-to {
+    color: #000;
+}
+
+#groups {
+    opacity: 1;
+    border: none;
+    background-color: #fff;
+}
+
+#groups:hover {
+    background-color: #fff;
+}
+
+#groups select {
+    background-color: #eee;
+    color: #444;
+}

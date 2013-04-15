@@ -39,7 +39,7 @@
     cursor: pointer;
 }
 
-#groups:before {
+#jump-to {
     cursor: pointer;
 
     position: fixed;
@@ -62,8 +62,7 @@
     font-weight: bold;
 }
 
-#groups:hover,
-#groups:hover select {
+#groups:hover {
     background-color: #444;
     color: #fff;
 }

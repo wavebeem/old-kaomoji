@@ -49,12 +49,12 @@ def head
     $cgi.meta(:charset => "utf-8") +
     viewport +
     css("style.css") +
+    css("selector.css") +
+    css("scrollbars.css") +
     if EMBED
     then css("embed.css")
     else ""
     end +
-    css("selector.css") +
-    css("scrollbars.css") +
     js("main.js") +
     if EMBED
     then js("ext.js")
@@ -147,6 +147,7 @@ def kaomoji txt
 end
 
 def kaomoji_groups
+    $cgi.div(:id => "jump-to") { "Jump to..." } +
     $cgi.select(:id => "picker") {
         $cgi.option(:value => "_", :disabled => "true") { "Jump to..." } +
         $moji.map {|group, mojis|
