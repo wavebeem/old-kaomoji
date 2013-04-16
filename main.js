@@ -53,11 +53,6 @@ var binds = {
 var picker;
 
 listen(window, "DOMContentLoaded", function(event) {
-    document.body.className = classes([
-        "use-push-effect",
-        "use-animations",
-    ]);
-
     query("input.kaomoji").forEach(function(button) {
         listen(button, "click", selectText);
     });
