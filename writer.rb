@@ -134,6 +134,7 @@ def kaomoji txt
         $cgi.button(
             :type   => "button",
             :class  => "kaomoji",
+            :"data-text" => txt,
         ) { txt }
     else
         $cgi.input(
