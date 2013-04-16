@@ -1,3 +1,12 @@
+#groups:hover {
+    background-color: #fff;
+}
+
+#groups select {
+    background-color: #eee;
+    color: #444;
+}
+
 #groups {
     position: fixed;
 
@@ -24,15 +33,15 @@
 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 
-    z-index: 4000;
+    opacity: 1.00;
 
-    opacity: 0.50;
+    z-index: 4000;
 }
 
 #groups,
 #groups select {
-    background-color: #333;
-    color: #ccc;
+    background-color: #fff;
+    color: #888;
 
     font-weight: bold;
 
@@ -44,8 +53,8 @@
 
     position: fixed;
     content: "Jump to...";
-    top:  1px;
-    left: 6px;
+    top:  2px;
+    left: 7px;
     width: 80px;
 
     margin:  0px;
@@ -63,8 +72,7 @@
 }
 
 #groups:hover {
-    background-color: #444;
-    color: #fff;
+    color: #444;
 }
 
 #groups select {
