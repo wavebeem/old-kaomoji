@@ -66,7 +66,7 @@ def head
     css("scrollbars.css") +
     (EMBED ? css("embed.css") + css("icon-font.css") : "" ) +
 
-    js("main.js") +
+    (!EMBED ? js("main.js") : "") +
     (EMBED ? js("ext.js") : "") +
 
     $cgi.title { "Kaomoji Selector" }

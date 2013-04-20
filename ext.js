@@ -11,20 +11,70 @@
 
 "use strict";
 
-listen(window, "DOMContentLoaded", function(event) {
-    function sendKaomoji(text) {
-        window.parent.postMessage({
-            namespace   : "binary_elk",
-            command     : "paste",
-            text        : text,
-        }, "*");
-    }
+function listen(elem, name, callback) {
+    elem.addEventListener(name, callback, false);
+}
 
-    var click = function(event) {
-        sendKaomoji(this.getAttribute("data-text"));
+function id(id) {
+    return document.getElementById(id);
+}
+
+listen(window, "DOMContentLoaded", function(event) {
+    var KEYS = {
+        'esc': 27
     };
 
-    query("button.kaomoji").forEach(function(button) {
-        listen(button, "click", click);
+    var picker = id("picker");
+    var upArrow = id("arrow-up");
+    var downArrow = id("arrow-down");
+    var leftArrow = id("arrow-left");
+    var rightArrow = id("arrow-right");
+
+    function messageUserScript(action, data) {
+        var toSend = {
+            action: action,
+            data: data
+        };
+
+        try {
+            window.parent.postMessage(toSend, '*');
+        } catch(e) {
+            console.log('Could not post message :(');
+        }
+    }
+
+    listen(picker, "change", function() {
+        window.location.hash = "-";
+        window.location.hash = picker.value;
+        picker.selectedIndex = 0;
+    });
+
+    listen(document, 'click', function(e){
+        if (e.target.nodeName === 'BUTTON') {
+            var emoteText = e.target.getAttribute("data-text");
+            messageUserScript('putEmote', emoteText);
+        }
+    });
+
+    listen(document, 'keydown', function(e){
+        if (e.which === KEYS.esc) {
+            messageUserScript('close');
+        }
+    });
+
+    listen(upArrow, 'click', function(){
+        messageUserScript('moveUp');
+    });
+
+    listen(downArrow, 'click', function(){
+        messageUserScript('moveDown');
+    });
+
+    listen(rightArrow, 'click', function(){
+        messageUserScript('moveRight');
+    });
+
+    listen(leftArrow, 'click', function(){
+        messageUserScript('moveLeft');
     });
 });
