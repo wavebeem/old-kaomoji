@@ -5,13 +5,14 @@
 // @author        Kyle Paulsen & Brian Mock
 // @copyright     Kyle Paulsen & Brian Mock
 // @license       http://www.wtfpl.net/
+// @icon          http://i.imgur.com/pPW9ZRe.png
 // @include       *
 // @grant         none
 // ==/UserScript==
 
 // Don't Run in frames
 try {
-  if (self != window.top) return;
+  if (window.self != window.top) return;
 } catch(e) { return; }
 
 (function() {
@@ -69,6 +70,7 @@ try {
 
   var messageFunctions = {
     putEmote: function(text) {
+      var newLen;
       if (hasValidActiveElement()) {
         var emoteText = text + ' ';
         var lastChar = activeElement.value.slice(-1);
@@ -76,8 +78,9 @@ try {
           emoteText = ' ' + emoteText;
         }
         activeElement.value += emoteText;
+        newLen = activeElement.value.length;
         activeElement.focus();
-        activeElement.setSelectionRange(99999, 99999);
+        activeElement.setSelectionRange(newLen, newLen);
       }
     },
     close: function() {
@@ -146,7 +149,8 @@ try {
 
   listen(window, 'message', processMessage);
 
-  text(buttonElement, "( ･ω･)ﾉ");
+  // ( ･ω･)ﾉ = ( \uff65\u03c9\uff65)\uff89
+  text(buttonElement, "( \uff65\u03c9\uff65)\uff89");
 
   listen(document, 'keydown', function(e){
     if (e.which === KEYS.esc) {
