@@ -1,3 +1,16 @@
+/**
+*** Copyright © 2013 Binary Elk <binary.elk@gmail.com>
+*** This work is free. You can redistribute it and/or modify it under the
+*** terms of the Do What The Fuck You Want To Public License, Version 2,
+*** as published by Sam Hocevar. See the COPYING file for more details.
+***
+*** This program is free software. It comes without any warranty, to
+*** the extent permitted by applicable law. You can redistribute it
+*** and/or modify it under the terms of the Do What The Fuck You Want
+*** To Public License, Version 2, as published by Sam Hocevar. See
+*** http://www.wtfpl.net/ for more details.
+**/
+
 #groups:hover {
     background-color: #fff;
 }
@@ -7,29 +20,18 @@
     color: #444;
 }
 
-#groups {
+.toolbar {
     position: fixed;
 
     /* display: none;*/
 
-    top:    0px;
-    left:   0px;
-
     padding:  0px;
     margin:   0px;
 
+    padding-bottom: 2px;
+
     padding-left:   0px;
     padding-right:  0px;
-
-    border: 3px solid #fff;
-
-    border-top-width:   0px;
-    border-left-width:  0px;
-
-    border-radius: 8px;
-    border-bottom-left-radius:  0px;
-    border-top-left-radius:     0px;
-    border-top-right-radius:    0px;
 
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
 
@@ -38,7 +40,14 @@
     z-index: 4000;
 }
 
-#groups,
+#groups {
+    top:    0px;
+    left:   0px;
+
+    border-bottom-right-radius: 8px;
+}
+
+.toolbar,
 #groups select {
     background-color: #fff;
     color: #888;

@@ -1,9 +1,21 @@
 #!/usr/bin/env ruby
+### Copyright © 2013 Binary Elk <binary.elk@gmail.com>
+### This work is free. You can redistribute it and/or modify it under the
+### terms of the Do What The Fuck You Want To Public License, Version 2,
+### as published by Sam Hocevar. See the COPYING file for more details.
+###
+### This program is free software. It comes without any warranty, to
+### the extent permitted by applicable law. You can redistribute it
+### and/or modify it under the terms of the Do What The Fuck You Want
+### To Public License, Version 2, as published by Sam Hocevar. See
+### http://www.wtfpl.net/ for more details.
+
 require "cgi"
 require "json"
 
-$cgi   = CGI.new("html4")
-$moji  = JSON.parse(File.read("kaomoji.json"))
+$cgi    = CGI.new("html4")
+$moji   = JSON.parse(File.read("kaomoji.json"))
+$header = File.read("header-logo.txt") + "\n" + File.read("header-text.txt")
 
 def env_bool? name, fallback=false
     if ENV[name]
@@ -46,35 +58,47 @@ def viewport
 end
 
 def head
-    $cgi.meta(:charset => "utf-8") +
+    $cgi.meta(:"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8") +
     viewport +
+
     css("style.css") +
     css("selector.css") +
     css("scrollbars.css") +
-    if EMBED
-    then css("embed.css")
-    else ""
-    end +
+    (EMBED ? css("embed.css") + css("icon-font.css") : "" ) +
+
     js("main.js") +
-    if EMBED
-    then js("ext.js")
-    else ""
-    end +
+    (EMBED ? js("ext.js") : "") +
+
     $cgi.title { "Kaomoji Selector" }
 end
 
 def body
-    $cgi.div(:id => "groups") {
+    $cgi.div(:id => "groups", :class => "toolbar") {
         kaomoji_groups
     } +
+    (EMBED ? embed_toolbar : "") +
     $cgi.div(:id => "container") {
         # header +
         kaomoji_items +
-        if EMBED
-        then ""
-        else footer
-        end
+        (EMBED ? "" : footer)
     }
+end
+
+DIRECTIONS = %w[
+    up
+    down
+    left
+    right
+]
+
+def embed_toolbar
+    $cgi.div(:id => "embed-toolbar", :class => "toolbar") {
+        DIRECTIONS.map{|d| dir_button d }.join
+    }
+end
+
+def dir_button dir
+    $cgi.div(:class => "arrow arrow-#{dir}", :id => "arrow-#{dir}")
 end
 
 def footer_text
@@ -150,7 +174,7 @@ end
 def kaomoji_groups
     $cgi.div(:id => "jump-to") { "Jump to..." } +
     $cgi.select(:id => "picker") {
-        $cgi.option(:value => "_", :disabled => "true") { "Jump to..." } +
+        $cgi.option(:value => "_", :disabled => "disabled") { "Jump to..." } +
         $moji.map {|group, mojis|
             $cgi.option(:value => group.downcase) {
                 group.capitalize
@@ -159,8 +183,18 @@ def kaomoji_groups
     }
 end
 
+def comment_header
+<<HEADER
+
+<!--
+#$header
+-->
+HEADER
+end
+
 def html
     $cgi.html {
+        comment_header +
         $cgi.head { head } +
         $cgi.body { body }
     }
