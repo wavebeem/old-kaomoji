@@ -1,0 +1,3 @@
+ This is generated output from the the Binary Elk Kaomoji Picker program
+ written by Binary Elk members Brian Mock and Kyle Paulsen. For more
+ information, visit https://github.com/saikobee/kaomoji
