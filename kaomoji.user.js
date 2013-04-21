@@ -60,7 +60,8 @@ try {
   }
 
   function processMessage(e) {
-    if (e.origin !== 'https://dl.dropboxusercontent.com') {
+    if (e.origin !== 'https://dl.dropboxusercontent.com'
+    &&  e.origin !== 'http://kaomoji.binaryelk.com') {
       return;
     }
 
