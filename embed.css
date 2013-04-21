@@ -49,7 +49,7 @@ html {
 
     width:          20px;
     height:         20px;
-    line-height:    18px;
+    line-height:    16px;
 
     text-align: center;
     vertical-align: middle;
@@ -67,4 +67,10 @@ html {
     left:   0px;
 
     border-top-right-radius: 4px;
+
+    padding-top: 8px;
+}
+
+button::-moz-focus-inner {
+    border: 0;
 }

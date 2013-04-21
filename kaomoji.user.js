@@ -10,9 +10,9 @@
 // @grant         none
 // ==/UserScript==
 
-// Don't Run in frames
+// Don't run in frames
 try {
-  if (window.self != window.top) return;
+  if (window.self !== window.top) return;
 } catch(e) { return; }
 
 (function() {
@@ -84,64 +84,93 @@ try {
       }
     },
     close: function() {
-      iframe.style.display = 'none';
+      balloon.style.display = 'none';
     },
     moveUp: function() {
-      iframe.style.top = "0";
-      iframe.style.bottom = "";
+      console.log("Moving up");
+      balloon.style.top = "0";
+      balloon.style.bottom = "";
     },
     moveDown: function() {
-      iframe.style.top = "";
-      iframe.style.bottom = "0";
+      console.log("Moving down");
+      balloon.style.top = "";
+      balloon.style.bottom = "0";
     },
     moveLeft: function() {
-      iframe.style.left = "0";
-      iframe.style.right = "";
+      console.log("Moving left");
+      balloon.style.left = "0";
+      balloon.style.right = "";
+      balloon.style.marginBottom = "32px";
     },
     moveRight: function() {
-      iframe.style.right = "0";
-      iframe.style.left = "";
+      console.log("Moving right");
+      balloon.style.right = "0";
+      balloon.style.left = "";
+      balloon.style.marginBottom = "10px";
     }
   };
 
-  var KEYS = {
-    'esc': 27
+  var K = {
+    ESC: 27
   };
 
-  var iframe = $create('iframe', {
-    src: 'https://dl.dropboxusercontent.com/u/2145242/kaomoji.html',
-    width: '45%',
-    height: '45%'
-  },{
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    margin: '10px 10px 32px 10px',
-    border: '1px solid rgba(0, 0, 0, 0.35)',
-    boxShadow: '0px 0px 6px 0px rgba(0, 0, 0, 0.25)',
-    borderRadius: '2px',
-    zIndex: '9999',
-    display: 'none'
-  });
+  var LS = window.localStorage;
+  var remoteHost = LS.BinaryElk_Kaomoji_DebugMode === "true"
+    ? LS.BinaryElk_Kaomoji_RemoteHost || "http://kaomoji.binaryelk.com/kaomoji/embed.html"
+    : 'https://dl.dropboxusercontent.com/u/2145242/kaomoji.html';
 
-  var buttonElement = $create('div',
-    {id: 'kaomoji_picker_button'},
+  var iframe = $create('iframe',
     {
-      cursor: 'pointer',
-      borderTopRightRadius: '4px',
-      borderLeftWidth: '0px',
-      borderBottomWidth: '0px',
-      border: '1px solid rgba(0, 0, 0, 0.25)',
-      position: 'fixed',
-      bottom: '0px',
-      left: '0px',
-      backgroundColor: 'rgba(255, 255, 255, 0.9)',
-      zIndex: '9998',
-      color: 'rgb(0, 0, 0)',
-      padding: '4px',
-      fontSize: '12px',
-      webkitUserSelect: 'none',
-      MozUserSelect: 'none'
+      id  : 'binary_elk_kaomoji_picker_iframe',
+      src : remoteHost,
+    },
+    {
+      border : '1px solid #ddd',
+      width  : '400px',
+      height : '400px',
+    }
+  );
+
+  var balloon = $create('div',
+    {
+      id  : 'binary_elk_kaomoji_picker_balloon',
+    },
+    {
+      lineHeight    : '0',
+      background    : 'white',
+      position      : 'fixed',
+      border        : '4px solid white',
+      borderRadius  : '6px',
+      boxShadow     : '0px 0px 2px rgba(0, 0, 0, 0.60), 0px 0px 12px rgba(0, 0, 0, 0.30)',
+      display       : 'none',
+      padding       : '0px',
+      margin        : '10px 10px 32px 10px',
+      bottom        : '0',
+      left          : '0',
+      zIndex        : '9999',
+      display       : 'none',
+    }
+  );
+
+  var button = $create('div',
+    {
+      id: 'binary_elk_kaomoji_picker_button'
+    },
+    {
+      cursor                : 'pointer',
+      borderTopRightRadius  : '4px',
+      boxShadow             : '0px 0px 1px rgba(0, 0, 0, 0.80)',
+      border                : 'none',
+      position              : 'fixed',
+      bottom                : '0px',
+      left                  : '0px',
+      backgroundColor       : 'rgba(240, 240, 240, 0.75)',
+      zIndex                : '9998',
+      color                 : 'rgb(0, 0, 0)',
+      padding               : '4px',
+      fontSize              : '12px',
+      webkitUserSelect      : 'none',
+      MozUserSelect         : 'none',
     }
   );
 
@@ -150,10 +179,10 @@ try {
   listen(window, 'message', processMessage);
 
   // ( ･ω･)ﾉ = ( \uff65\u03c9\uff65)\uff89
-  text(buttonElement, "( \uff65\u03c9\uff65)\uff89");
+  text(button, "( \uff65\u03c9\uff65)\uff89");
 
   listen(document, 'keydown', function(e){
-    if (e.which === KEYS.esc) {
+    if (e.which === K.ESC) {
       messageFunctions.close();
     }
   });
@@ -162,28 +191,28 @@ try {
     getNewActiveElement();
   });
 
-  listen(buttonElement, 'mousedown', function(){
+  listen(button, 'mousedown', function(){
     activeElement = document.activeElement;
   });
 
   listen(document, 'click', function(e){
-    if (!getNewActiveElement() && e.target !== buttonElement) {
+    if (!getNewActiveElement() && e.target !== button) {
       messageFunctions.close();
     }
   });
 
-  listen(buttonElement, 'click', function(){
-    if (iframe.style.display !== '') {
-      iframe.style.display = '';
-    } else {
-      iframe.style.display = 'none';
-    }
+  listen(button, 'click', function(){
+    var bs = balloon.style;
+    bs.display = bs.display === 'table-cell' ? 'none' : 'table-cell';
+
     if (hasValidActiveElement()) {
       activeElement.focus();
     }
   });
 
-  document.body.appendChild(buttonElement);
-  document.body.appendChild(iframe);
-
+  balloon.appendChild(iframe);
+  document.body.appendChild(button);
+  document.body.appendChild(balloon);
 })();
+
+// vim: set sw=2 sts=2:
