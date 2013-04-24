@@ -10,12 +10,16 @@
 // @grant         none
 // ==/UserScript==
 
-// Don't run in frames
-try {
-  if (window.self !== window.top) return;
-} catch(e) { return; }
-
 (function() {
+  // Don't run in frames
+  try {
+    if (window.self !== window.top)
+      return;
+  }
+  catch (e) {
+    return;
+  }
+
   function $create(ele, attrs, styles) {
     var ele = document.createElement(ele);
     for (var attr in attrs) {
