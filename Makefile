@@ -9,9 +9,11 @@
 ### To Public License, Version 2, as published by Sam Hocevar. See
 ### http://www.wtfpl.net/ for more details.
 
-all:
-	echo -n | ./writer.rb > index.html
+all: standalone embed
+
+standalone:
+	./writer.rb </dev/null >index.html
 embed:
-	echo -n | EMBED=1 ./writer.rb > embed.html
+	EMBED=1 ./writer.rb </dev/null >embed.html
 data:
 	./scraper.rb > kaomoji.json

@@ -84,16 +84,9 @@ def body
     }
 end
 
-DIRECTIONS = %w[
-    up
-    down
-    left
-    right
-]
-
 def embed_toolbar
     $cgi.div(:id => "embed-toolbar", :class => "toolbar") {
-        DIRECTIONS.map{|d| dir_button d }.join
+        %w[left right].map{|d| dir_button d }.join
     }
 end
 

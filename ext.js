@@ -20,25 +20,21 @@ function id(id) {
 }
 
 listen(window, "DOMContentLoaded", function(event) {
-    var KEYS = {
-        'esc': 27
+    var K = {
+        ESC : 27
     };
 
-    var picker = id("picker");
-    var upArrow = id("arrow-up");
-    var downArrow = id("arrow-down");
-    var leftArrow = id("arrow-left");
-    var rightArrow = id("arrow-right");
+    var picker      = id("picker");
+    var leftArrow   = id("arrow-left");
+    var rightArrow  = id("arrow-right");
 
     function messageUserScript(action, data) {
-        var toSend = {
-            action: action,
-            data: data
-        };
-
         try {
-            window.parent.postMessage(toSend, '*');
-        } catch(e) {
+            window.parent.postMessage({
+                action  : action,
+                data    : data,
+            }, '*');
+        } catch (e) {
             console.log('Could not post message :(');
         }
     }
@@ -49,32 +45,24 @@ listen(window, "DOMContentLoaded", function(event) {
         picker.selectedIndex = 0;
     });
 
-    listen(document, 'click', function(e){
+    listen(document, 'click', function(e) {
         if (e.target.nodeName === 'BUTTON') {
             var emoteText = e.target.getAttribute("data-text");
             messageUserScript('putEmote', emoteText);
         }
     });
 
-    listen(document, 'keydown', function(e){
-        if (e.which === KEYS.esc) {
+    listen(document, 'keydown', function(e) {
+        if (e.which === K.ESC) {
             messageUserScript('close');
         }
     });
 
-    listen(upArrow, 'click', function(){
-        messageUserScript('moveUp');
-    });
-
-    listen(downArrow, 'click', function(){
-        messageUserScript('moveDown');
-    });
-
-    listen(rightArrow, 'click', function(){
+    listen(rightArrow, 'click', function() {
         messageUserScript('moveRight');
     });
 
-    listen(leftArrow, 'click', function(){
+    listen(leftArrow, 'click', function() {
         messageUserScript('moveLeft');
     });
 });

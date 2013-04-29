@@ -91,16 +91,6 @@
     close: function() {
       balloon.style.display = 'none';
     },
-    moveUp: function() {
-      console.log("Moving up");
-      balloon.style.top = "0";
-      balloon.style.bottom = "";
-    },
-    moveDown: function() {
-      console.log("Moving down");
-      balloon.style.top = "";
-      balloon.style.bottom = "0";
-    },
     moveLeft: function() {
       console.log("Moving left");
       balloon.style.left = "0";
@@ -130,9 +120,10 @@
       src : remoteHost,
     },
     {
-      border : '1px solid #ddd',
-      width  : '400px',
-      height : '400px',
+      boxSizing : 'border-box',
+      border    : '1px solid #ddd',
+      width     : '600px',
+      height    : '100%',
     }
   );
 
@@ -150,6 +141,7 @@
       display       : 'none',
       padding       : '0px',
       margin        : '10px 10px 32px 10px',
+      top           : '0',
       bottom        : '0',
       left          : '0',
       zIndex        : '9999',
