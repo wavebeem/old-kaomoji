@@ -120,7 +120,10 @@
       src : remoteHost,
     },
     {
-      boxSizing : 'border-box',
+      webkitBoxSizing : 'border-box',
+      MozBoxSizing    : 'border-box',
+      boxSizing       : 'border-box',
+
       border    : '1px solid #ddd',
       width     : '600px',
       height    : '100%',
