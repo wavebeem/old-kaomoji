@@ -42,8 +42,9 @@
     element.appendChild(document.createTextNode(text));
   }
 
-  function listen(element, type, listener) {
-    element.addEventListener(type, listener, false);
+  function listen(element, type, listener, bubble) {
+    bubble = typeof bubble === 'undefined' ? false : bubble;
+    element.addEventListener(type, listener, bubble);
   }
 
   function hasValidActiveElement() {
@@ -195,11 +196,11 @@
     activeElement = document.activeElement;
   });
 
-  listen(document, 'click', function(e){
+  listen(document, 'focus', function(e){
     if (!getNewActiveElement() && e.target !== button) {
       messageFunctions.close();
     }
-  });
+  }, true);
 
   listen(button, 'click', function(){
     var bs = balloon.style;
