@@ -106,6 +106,40 @@ h1 {
     top: 0px;
 }
 
+.new-kaomoji {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size:   16px;
+
+    display: inline-block;
+
+    color: #666;
+
+    resize: none;
+
+    height: 1.2em;
+
+    min-width: 10em;
+
+    border: 1px solid #e0e0e0;
+
+    margin:   3px;
+    padding: 10px;
+
+    vertical-align: top;
+
+    background-color: transparent;
+
+    background-color: #f0f0f0;
+
+    border-radius: 2px;
+
+    text-align: center;
+
+    position: relative;
+    top: 0px;
+}
+
 .kaomoji:focus {
     outline: none;
 }

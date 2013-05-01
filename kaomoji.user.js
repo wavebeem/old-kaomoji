@@ -48,17 +48,18 @@
   }
 
   function hasValidActiveElement() {
+    if (!activeElement) { return false; }
     var activeNode = activeElement.nodeName;
     if (activeNode !== 'INPUT' && activeNode !== 'TEXTAREA') {
-      return getNewActiveElement();
+      return false;
     }
     return true;
   }
 
-  function getNewActiveElement() {
-    var activeNode = document.activeElement.nodeName;
+  function getNewActiveElement(elem) {
+    var activeNode = elem.nodeName;
     if (activeNode === 'INPUT' || activeNode === 'TEXTAREA') {
-      activeElement = document.activeElement;
+      activeElement = elem;
       return true;
     }
     return false;
@@ -76,7 +77,6 @@
 
   var messageFunctions = {
     putEmote: function(text) {
-      var newLen;
       if (hasValidActiveElement()) {
         var emoteText = text + ' ';
         var lastChar = activeElement.value.slice(-1);
@@ -84,9 +84,14 @@
           emoteText = ' ' + emoteText;
         }
         activeElement.value += emoteText;
-        newLen = activeElement.value.length;
+
+        // Dont ask... I dont even...
+        // ok fine... Firefox wont let me type in the new Emote box after I click on a
+        // emote button first. Doing this crap somehow fixes it.
+        activeElement.blur();
         activeElement.focus();
-        activeElement.setSelectionRange(newLen, newLen);
+        activeElement.blur();
+        activeElement.focus();
       }
     },
     close: function() {
@@ -188,16 +193,16 @@
     }
   });
 
-  listen(iframe, 'mousedown', function(){
-    getNewActiveElement();
-  });
-
-  listen(button, 'mousedown', function(){
-    activeElement = document.activeElement;
-  });
-
   listen(document, 'focus', function(e){
-    if (!getNewActiveElement() && e.target !== button) {
+    if (e.target === document) { return; }
+    if (!getNewActiveElement(e.target) && e.target !== button && e.target !== iframe) {
+      messageFunctions.close();
+    }
+  }, true);
+
+  listen(document, 'click', function(e){
+    var nodeName = e.target.nodeName;
+    if (nodeName !== 'INPUT' && nodeName !== 'TEXTAREA' && e.target !== button && e.target !== iframe) {
       messageFunctions.close();
     }
   }, true);

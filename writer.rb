@@ -131,6 +131,12 @@ def header
 end
 
 def kaomoji_items
+    $cgi.h2 {
+        $cgi.a(:id => "favorites", :href => "#favorites") {
+            "Favorites"
+        }
+    } +
+    $cgi.div(:id => "favorites-group", :class => "group") {} +
     $moji.map {|group, mojis|
         g = group.downcase
         $cgi.h2 {
@@ -168,6 +174,7 @@ def kaomoji_groups
     $cgi.div(:id => "jump-to") { "Jump to..." } +
     $cgi.select(:id => "picker") {
         $cgi.option(:value => "_", :disabled => "disabled") { "Jump to..." } +
+        $cgi.option(:value => "favorites") { "Favorites" } +
         $moji.map {|group, mojis|
             $cgi.option(:value => group.downcase) {
                 group.capitalize
