@@ -82,6 +82,26 @@ function gotoValue() {
     picker.selectedIndex = 0;
 }
 
+function clearSelection() {
+    var sel = document.selection;
+    if (sel && sel.empty) {
+        sel.empty();
+    }
+    else {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        }
+        var active = document.activeElement;
+        if (active) {
+            var tagName = active.nodeName;
+            if (tagName === "TEXTAREA" ||
+                (tagName === "INPUT" && active.type === "text")) {
+                active.selectionStart = active.selectionEnd;
+            }
+        }
+    }
+}
+
 function populateFavorites() {
     var newEmote = $create("input", {
         type        : "text",
@@ -217,8 +237,8 @@ function toggleFavorite(elem) {
     }
     // Toggle favorite from any other group
     else if (hasClass(elem, "favorited")) {
-        favorites = query(".kaomoji", favorites);
-        unhighlightFavorite(favorites, text, true);
+        var favoriteEmotes = query(".kaomoji", favorites);
+        unhighlightFavorite(favoriteEmotes, text, true);
         removeEmoteFavorite(text);
         removeClass(elem, "favorited");
     }
@@ -260,6 +280,7 @@ listen(window, "DOMContentLoaded", function(event) {
             e.preventDefault();
             toggleFavorite(elem);
         }
+        clearSelection();
     });
 
     populateFavorites();
