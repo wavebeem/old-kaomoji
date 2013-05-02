@@ -146,7 +146,8 @@
       position      : 'fixed',
       border        : '4px solid white',
       borderRadius  : '6px',
-      boxShadow     : '0px 0px 2px rgba(0, 0, 0, 0.60), 0px 0px 12px rgba(0, 0, 0, 0.30)',
+      boxShadow     : '0px 0px 2px rgba(0, 0, 0, 0.60),'
+                    + '0px 0px 12px rgba(0, 0, 0, 0.30)',
       display       : 'none',
       padding       : '0px',
       margin        : '10px 10px 32px 10px',
@@ -194,15 +195,22 @@
   });
 
   listen(document, 'focus', function(e){
-    if (e.target === document) { return; }
-    if (!getNewActiveElement(e.target) && e.target !== button && e.target !== iframe) {
+    if (e.target === document)
+      return;
+
+    if (!getNewActiveElement(e.target)
+    && e.target !== button
+    && e.target !== iframe) {
       messageFunctions.close();
     }
   }, true);
 
   listen(document, 'click', function(e){
     var nodeName = e.target.nodeName;
-    if (nodeName !== 'INPUT' && nodeName !== 'TEXTAREA' && e.target !== button && e.target !== iframe) {
+    if (nodeName !== 'INPUT'
+    &&  nodeName !== 'TEXTAREA'
+    &&  e.target !== button
+    &&  e.target !== iframe) {
       messageFunctions.close();
     }
   }, true);

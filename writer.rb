@@ -46,8 +46,12 @@ def js src
             :src    => src,
         )
     else
-        $cgi.script(:type => "text/javascript") { File.read(src) }
+        inline_js File.read(src)
     end
+end
+
+def inline_js txt
+    $cgi.script(:type => "text/javascript") { txt }
 end
 
 def viewport
@@ -55,6 +59,13 @@ def viewport
         :name    => "viewport",
         :content => "width=device-width, initial-scale=1",
     )
+end
+
+def env_vars
+    inline_js <<JS
+var DEBUG = #{DEBUG};
+var EMBED = #{EMBED};
+JS
 end
 
 def head
@@ -66,7 +77,9 @@ def head
     css("scrollbars.css") +
     (EMBED ? css("embed.css") + css("icon-font.css") : "" ) +
 
-    (EMBED ? "" : js("main.js")) +
+    env_vars +
+
+    js("main.js") +
     (EMBED ? js("ext.js") : "") +
 
     $cgi.title { "Kaomoji Selector" }
@@ -136,7 +149,7 @@ def kaomoji_items
             "Favorites"
         }
     } +
-    $cgi.div(:id => "favorites-group", :class => "group") {} +
+    $cgi.div(:id => "favorites-group", :class => "group") +
     $moji.map {|group, mojis|
         g = group.downcase
         $cgi.h2 {

@@ -11,17 +11,51 @@
 
 "use strict";
 
-function listen(elem, name, callback) {
-    elem.addEventListener(name, callback, false);
+function $create(ele, attrs, styles) {
+    var ele = document.createElement(ele);
+    for (var attr in attrs) {
+        if (attrs.hasOwnProperty(attr)) {
+            ele[attr] = attrs[attr];
+        }
+    }
+
+    for (var style in styles) {
+        if (styles.hasOwnProperty(style)) {
+            ele.style[style] = styles[style];
+        }
+    }
+
+    return ele;
+}
+
+function listen(elem, name, callback, bubble) {
+    elem.addEventListener(name, callback, !!bubble);
 }
 
 var slice = [].slice;
-function query(s) {
-    return slice.call(document.querySelectorAll(s));
+function query(s, e) {
+    e = e || document;
+    return slice.call(e.querySelectorAll(s));
 }
 
-function selectText(event) {
-    this.select();
+function id(id) {
+    return document.getElementById(id);
+}
+
+function selectText(elem) {
+    elem.select();
+}
+
+function addClass(elem, klass) {
+    elem.classList.add(klass);
+}
+
+function removeClass(elem, klass) {
+    elem.classList.remove(klass);
+}
+
+function hasClass(elem, klass) {
+    return elem.classList.contains(klass);
 }
 
 var max = Math.max;
@@ -48,31 +82,185 @@ function gotoValue() {
     picker.selectedIndex = 0;
 }
 
-var binds = {
-    j: function() { jumpBy(+1) },
-    k: function() { jumpBy(-1) },
-};
+function populateFavorites() {
+    var newEmote = $create("input", {
+        type        : "text",
+        id          : "new-kaomoji-input",
+        placeholder : "add custom kaomoji...",
+    }, {});
 
-var picker;
-
-listen(window, "DOMContentLoaded", function(event) {
-    query("input.kaomoji").forEach(function(button) {
-        listen(button, "click", selectText);
-    });
-
-    picker = query("#picker")[0];
-    listen(picker, "change", gotoValue);
-
-    listen(document.body, "click", function(event) {
-        picker.click();
-    });
-
-    listen(window, "keypress", function(event) {
-        var k = chr(event.charCode || event.which);
-        var f = binds[k];
-        if (f) {
-            f();
-            event.preventDefault();
+    listen(newEmote, "blur", function() {
+        if (newEmote.value.length > 0) {
+            addEmoteFavorite(newEmote.value);
+            highlightFavorites(newEmote.value);
+            newEmote.value = "";
         }
     });
+
+    listen(newEmote, "keydown", function(e) {
+        if (newEmote.value.length > 0 && e.which === K.ENTER) {
+            addEmoteFavorite(newEmote.value);
+            highlightFavorites(newEmote.value);
+            newEmote.value = "";
+        }
+    });
+
+    favorites.appendChild(newEmote);
+
+    highlightFavorites();
+
+    store.forEach(makeEmote);
+}
+
+function saveFaves() {
+    try {
+        localStorage.favorites = JSON.stringify(store);
+    }
+    catch (e) {
+    }
+}
+
+function addEmoteFavorite(text) {
+    store.push(text);
+    makeEmote(text);
+    saveFaves();
+}
+
+function removeEmoteFavorite(text) {
+    var loc = store.indexOf(text);
+    if (loc >= 0) {
+        store.splice(loc, 1);
+        saveFaves();
+    }
+}
+
+function makeEmote(text) {
+    var newEmote;
+    if (EMBED) {
+        newEmote = $create("button", {
+            className   : "kaomoji",
+            type        : "button",
+        }, {});
+        newEmote.setAttribute("data-text", text);
+        newEmote.appendChild(document.createTextNode(text));
+    }
+    else {
+        newEmote = $create("input", {
+            className   : "kaomoji",
+            type        : "text",
+            value       : text,
+            size        : "1",
+            readonly    : "readonly",
+        }, {});
+    }
+
+    favorites.insertBefore(newEmote, id("new-kaomoji-input"));
+}
+
+var picker;
+var store = [];
+var favorites;
+var allEmotes;
+
+var K = {
+    ESC     : 27,
+    ENTER   : 13,
+};
+
+function kaomojiText(elem) {
+    return EMBED
+        ? elem.getAttribute("data-text")
+        : elem.value;
+}
+
+function highlightFavorites(toHighlight) {
+    toHighlight = (typeof toHighlight === "undefined")
+        ? store
+        : [toHighlight];
+
+    allEmotes.forEach(function(btn) {
+        var text = kaomojiText(btn);
+        if (toHighlight.indexOf(text) >= 0) {
+            addClass(btn, "favorited");
+        }
+    });
+}
+
+function unhighlightFavorite(elements, text, remove) {
+    var i = 0;
+    var n = elements.length;
+    for (; i < n; ++i) {
+        var elem = elements[i];
+
+        if (kaomojiText(elem) !== text)
+            continue;
+
+        if (remove) {
+            elem.parentNode.removeChild(elem);
+            break;
+        }
+        else if (elem.parentNode.id !== "favorites-group") {
+            removeClass(elem, "favorited");
+            break;
+        }
+    }
+}
+
+function toggleFavorite(elem) {
+    var text = kaomojiText(elem);
+
+    // Removing favorite from favorites group
+    if (elem.parentNode.id === "favorites-group") {
+        unhighlightFavorite(allEmotes, text, false);
+        removeEmoteFavorite(text);
+        favorites.removeChild(elem);
+    }
+    // Toggle favorite from any other group
+    else if (hasClass(elem, "favorited")) {
+        favorites = query(".kaomoji", favorites);
+        unhighlightFavorite(favorites, text, true);
+        removeEmoteFavorite(text);
+        removeClass(elem, "favorited");
+    }
+    // Add favorite
+    else {
+        addEmoteFavorite(text);
+        addClass(elem, "favorited");
+    }
+}
+
+    try {
+        store = JSON.parse(localStorage.favorites);
+    }
+    catch (e) {
+    }
+
+listen(window, "DOMContentLoaded", function(event) {
+    allEmotes = query(".kaomoji");
+    picker    = id("picker");
+    favorites = id("favorites-group");
+
+    // Left click to select text
+    listen(document, 'click', function(e) {
+        var elem = e.target;
+        if (elem.nodeName === "INPUT"
+        && hasClass(elem, "kaomoji")
+        && e.which === 1) {
+            e.preventDefault();
+            selectText(elem);
+        }
+    });
+
+    listen(picker, "change", gotoValue);
+
+    // Right click to favorite
+    listen(document, 'contextmenu', function(e) {
+        var elem = e.target;
+        if (hasClass(elem, "kaomoji")) {
+            e.preventDefault();
+            toggleFavorite(elem);
+        }
+    });
+
+    populateFavorites();
 });

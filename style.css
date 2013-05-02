@@ -70,6 +70,7 @@ h1 {
     box-shadow: inset 0px 3px 0px rgba(0, 0, 0, 0.05);
 }
 
+#new-kaomoji-input,
 .kaomoji {
     font-family: sans-serif;
     font-weight: normal;
@@ -87,7 +88,7 @@ h1 {
 
     min-width: 10em;
 
-    border: 1px solid #e0e0e0;
+    border: 1px solid rgba(0, 0, 0, 0.10);
 
     margin:   3px;
     padding: 10px;
@@ -104,6 +105,24 @@ h1 {
 
     position: relative;
     top: 0px;
+}
+
+#new-kaomoji-input {
+    cursor: auto;
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.20);
+    border-radius: 0px;
+}
+
+.kaomoji.favorited {
+    background-color: #fcfcfc;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+}
+
+.kaomoji.favorited:hover {
+    background-color: #fff;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
 .new-kaomoji {
@@ -147,7 +166,7 @@ h1 {
 .kaomoji:hover {
     background-color: #fafafa;
     border-bottom-color: rgba(0, 0, 0, 0.25);
-    box-shadow: inset 0px -3px 0px 0px #e0e0e0;
+    box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.10);
 }
 
 .kaomoji:active {
@@ -263,4 +282,11 @@ a#copyright {
 
     border-left:    1px solid #ccc;
     border-right:   1px solid #ccc;
+}
+
+#new-kaomoji-input {
+}
+
+#new-kaomoji-input:focus {
+    outline: none;
 }
