@@ -31,13 +31,18 @@ a {
     text-decoration: none;
 }
 
+html,
+body,
 h1,
 h2 {
     font-family:
         "Helvetica",
         "Arial",
         sans-serif;
+}
 
+h1,
+h2 {
     text-align: center;
 
     font-size: 18px;
@@ -197,40 +202,22 @@ h1 {
 }
 
 #footer {
-    background-color: #444;
-    box-shadow: 0px -3px 0px #aaa;
-
-    border: 1px solid rgba(0, 0, 0, 0.10);
-
-    border-bottom-width: 0px;
-
     padding: 6px;
 
     text-align: center;
 
-    font-size: 12px;
+    font-size: 24px;
 
-    color: #ccc;
-    background-color: #444;
-
-    font-family: sans-serif;
     font-weight: bold;
-
-    border-top-left-radius:  2px;
-    border-top-right-radius: 2px;
 }
 
 #footer a {
-    color: #729fcf;
-    border-radius: 1em;
-
-    padding-left:  4px;
-    padding-right: 4px;
+    color: rgba(0, 0, 0, 0.45);
+    text-shadow: 0px 1px 1px #fff;
 }
 
 #footer a:hover {
-    color: #acd;
-    background-color: rgba(255, 255, 255, 0.10);
+    color: rgba(0, 0, 0, 0.55);
 }
 
 #footer #copyright:hover {
@@ -251,15 +238,9 @@ h1 {
     margin: 2px;
 }
 
-a#copyright {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 16px;
-    color: #ccc;
-}
-
-#copyright:hover {
-    color: #fff;
+#close-button,
+#copyright {
+    display: block;
 }
 
 #container .group {
@@ -289,4 +270,91 @@ a#copyright {
 
 #new-kaomoji-input:focus {
     outline: none;
+}
+
+#info-window {
+    position: fixed;
+    /* position: relative;*/
+
+    margin:   0px;
+    padding: 10px;
+
+    /* width: 300px;*/
+
+    /* margin-left:  auto;*/
+    /* margin-right: auto;*/
+
+    background: #fff;
+
+    top:   20px;
+    right: 20px;
+
+    border-radius: 3px;
+
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.40);
+
+    border-bottom: 3px solid rgba(0, 0, 0, 0.05);
+
+    font-size: 120%;
+
+    z-index: 9000;
+
+    color: #666;
+}
+
+#info-window p {
+    margin-top:     6px;
+    margin-bottom:  6px;
+}
+
+#info-window a {
+    color: #68a;
+}
+
+#info-window a:hover {
+    color: #8ac;
+}
+
+#modal-overlay {
+    display: none;
+
+    position: fixed;
+
+    z-index: 8000;
+
+    top:    0px;
+    bottom: 0px;
+    left:   0px;
+    right:  0px;
+
+    background-color: rgba(238, 238, 238, 0.60);
+}
+
+#close-button {
+    padding: 6px;
+
+    display: block;
+
+    background-color: #444;
+    color: #fff;
+
+    border: 0px solid #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.40);
+
+    font-weight: bold;
+
+    border-radius: 100%;
+
+    cursor: pointer;
+
+    position: absolute;
+
+    top:   -8px;
+    right: -8px;
+
+    font-size: 16px;
+}
+
+#close-button:hover {
+    background-color: #666;
 }

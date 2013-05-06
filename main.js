@@ -181,6 +181,9 @@ var picker;
 var store = [];
 var favorites;
 var allEmotes;
+var closeButt;
+var overlay;
+var helpMe;
 
 var K = {
     ESC     : 27,
@@ -249,16 +252,28 @@ function toggleFavorite(elem) {
     }
 }
 
-    try {
-        store = JSON.parse(localStorage.favorites);
-    }
-    catch (e) {
-    }
+try {
+    store = JSON.parse(localStorage.favorites);
+}
+catch (e) {
+}
 
 listen(window, "DOMContentLoaded", function(event) {
     allEmotes = query(".kaomoji");
     picker    = id("picker");
     favorites = id("favorites-group");
+    closeButt = id("close-button");
+    overlay   = id("modal-overlay");
+    helpMe    = id("help-me");
+
+    listen(closeButt, "click", function(e) {
+        overlay.style.display = "none";
+    });
+
+    listen(helpMe, "click", function(e) {
+        overlay.style.display = "block";
+        e.preventDefault();
+    });
 
     // Left click to select text
     listen(document, 'click', function(e) {

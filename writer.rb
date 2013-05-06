@@ -74,15 +74,16 @@ def head
 
     css("style.css") +
     css("selector.css") +
-    css("scrollbars.css") +
-    (EMBED ? css("embed.css") + css("icon-font.css") : "" ) +
+    # css("scrollbars.css") +
+    (EMBED ? css("embed.css") : "" ) +
+    css("icon-font.css") +
 
     env_vars +
 
     js("main.js") +
     (EMBED ? js("ext.js") : "") +
 
-    $cgi.title { "Kaomoji Selector" }
+    $cgi.title { "Kaomoji Selector :: Binary Elk" }
 end
 
 def body
@@ -91,9 +92,13 @@ def body
     } +
     (EMBED ? embed_toolbar : "") +
     $cgi.div(:id => "container") {
-        # header +
         kaomoji_items +
-        (EMBED ? "" : footer)
+        footer
+    } +
+    $cgi.div(:id => "modal-overlay") {
+        $cgi.div(:id => "info-window") {
+            info_window_contents
+        }
     }
 end
 
@@ -104,41 +109,49 @@ def embed_toolbar
 end
 
 def dir_button dir
-    $cgi.div(:class => "arrow arrow-#{dir}", :id => "arrow-#{dir}")
+    $cgi.div(:class => "arrow icon-arrow-#{dir}", :id => "arrow-#{dir}")
 end
 
-def footer_text
+def info_window_contents
     $cgi.p {
-        "Full source code available on " +
+        "Full source code at " +
         $cgi.a(:href => "https://github.com/saikobee/kaomoji") {
             "GitHub"
         }
     } +
     $cgi.p {
-        "Emoticons from " +
+        "Kaomoji from " +
         $cgi.a(:href => "http://www.japaneseemoticons.net/all-japanese-emoticons/") {
             "Japanese Emoticons"
         }
+    } +
+    copyright +
+    close_button
+end
+
+def close_button
+    $cgi.button(:id => "close-button", :type => "button") {
+        $cgi.div(:class => "icon-close")
     }
 end
 
 def copyright
-    $cgi.a(:href => "http://saikobee.github.com", :id => "copyright") {
-        "&copy; 2013 Brian Mock"
+    $cgi.span(:id => "copyright") {
+        "&copy; 2013 " +
+        $cgi.a(:href => "http://saikobee.github.com") {
+            "Brian Mock"
+        } +
+        " &amp; " +
+        $cgi.a(:href => "http://www.kylepaulsen.com/") {
+            "Kyle Paulsen"
+        }
     }
 end
 
 def footer
     $cgi.div(:id => "footer") {
-        footer_text +
-        copyright
-    }
-end
-
-def header
-    $cgi.h1(:id => "header") {
-        $cgi.a(:href => "#") {
-            "Kaomoji Picker"
+        $cgi.a(:id => "help-me", :href => "#") {
+            "Help / About"
         }
     }
 end
