@@ -184,6 +184,8 @@ var allEmotes;
 var closeButt;
 var overlay;
 var helpMe;
+var infoMsg;
+var hideHelp;
 
 var K = {
     ESC     : 27,
@@ -265,6 +267,13 @@ listen(window, "DOMContentLoaded", function(event) {
     closeButt = id("close-button");
     overlay   = id("modal-overlay");
     helpMe    = id("help-me");
+    infoMsg   = id("info-message");
+    hideHelp  = id("hide-info-message-forever");
+
+    listen(hideHelp, "click", function(e) {
+        e.preventDefault();
+        infoMsg.style.display = "none";
+    });
 
     listen(closeButt, "click", function(e) {
         overlay.style.display = "none";

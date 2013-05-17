@@ -92,12 +92,33 @@ def body
     } +
     (EMBED ? embed_toolbar : "") +
     $cgi.div(:id => "container") {
+        info_message +
         kaomoji_items +
         footer
     } +
     $cgi.div(:id => "modal-overlay") {
         $cgi.div(:id => "info-window") {
             info_window_contents
+        }
+    }
+end
+
+def info_tips
+    return <<TIPS.chomp.split(/\n{2,}/)
+Right click a kaomoji to favorite it, or a favorite to remove it.
+
+Type into the box and hit Enter to add a custom kaomoji.
+TIPS
+end
+
+def info_message
+    $cgi.div(:class => "message", :id => "info-message") {
+        $cgi.h2 { "Tips and Tricks" } +
+        info_tips.map{|tip| $cgi.p { tip }}.join +
+        $cgi.div(:id => "hide-info-message-forever-container") {
+            $cgi.a(:href => "#", :id => "hide-info-message-forever") {
+                "Hide this message"
+            }
         }
     }
 end
