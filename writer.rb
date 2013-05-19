@@ -92,7 +92,7 @@ def body
     } +
     (EMBED ? embed_toolbar : "") +
     $cgi.div(:id => "container") {
-        info_message +
+        (EMBED ? "" : $cgi.h1 { "Kaomoji Picker" }) +
         kaomoji_items +
         footer
     } +
@@ -100,7 +100,8 @@ def body
         $cgi.div(:id => "info-window") {
             info_window_contents
         }
-    }
+    } +
+    info_message
 end
 
 def info_tips
@@ -125,7 +126,10 @@ end
 
 def embed_toolbar
     $cgi.div(:id => "embed-toolbar", :class => "toolbar") {
-        %w[left right].map{|d| dir_button d }.join
+        # %w[left right].map{|d| dir_button d }.join
+        dir_button("left") +
+        " Dock " +
+        dir_button("right")
     }
 end
 
@@ -178,20 +182,21 @@ def footer
 end
 
 def kaomoji_items
-    $cgi.h2 {
-        $cgi.a(:id => "favorites", :href => "#favorites") {
-            "Favorites"
+    $cgi.div(:id => "favorites-group", :class => "group") {
+        $cgi.h2(:id => "favorites") {
+            $cgi.a(:href => "#favorites") {
+                "Favorites"
+            }
         }
     } +
-    $cgi.div(:id => "favorites-group", :class => "group") +
     $moji.map {|group, mojis|
         g = group.downcase
-        $cgi.h2 {
-            $cgi.a(:id => g, :href => "##{g}") {
-                group
-            }
-        } +
         $cgi.div(:class => "group") {
+            $cgi.h2(:id => g) {
+                $cgi.a(:href => "##{g}") {
+                    group
+                }
+            } +
             mojis.map {|moji|
                 kaomoji moji.chomp.strip
             }.join

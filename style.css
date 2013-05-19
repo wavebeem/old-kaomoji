@@ -12,7 +12,12 @@
 **/
 
 html {
+    background-color: #eee;
     background-color: #ddd;
+    background-color: #fff;
+    background-color: #e4e4e4;
+    background-color: #ccc;
+    background-attachment: fixed;
     color: #444;
 }
 
@@ -56,23 +61,59 @@ h2 a {
     color: #666;
 }
 
-#footer,
-h2 {
-    margin-top: 16px;
+#container .group {
+    /* border: 1px solid rgba(0, 0, 0, 0.35);*/
+    /* box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.05);*/
+
+    box-shadow:
+        0px 0px 0px 1px rgba(0, 0, 0, 0.20),
+        0px 0px 0px 4px rgba(0, 0, 0, 0.05);
+
+    padding: 0px;
+    padding-bottom: 8px;
+
+    margin-bottom: 16px;
+
+    background-color: #eee;
+
+    border-radius: 2px;
+}
+
+#container h2 {
+    /* margin-left:  0px;*/
+    /* margin-right: 0px;*/
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.40);*/
+    /* box-shadow: inset 0px -3px 0px #729fcf;*/
+}
+
+#container h2 {
+    /* background-color: #777;*/
+    /* background-color: #fafafa;*/
+}
+
+#container h2,
+#container h2 a {
+    /* color: #ccc;*/
+    /* text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.40);*/
+}
+
+#container h2 a {
+    margin: 4px;
+    min-width: 100px;
+    border-radius: 2px;
+    border-radius: 6px;
+    border-radius: 10px;
+    padding:        8px;
+    padding-top:    4px;
+    padding-bottom: 4px;
+    display: inline-block;
+    background-color: #729fcf;
+    color: #fff;
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.40);
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 h1 {
-    color: #fff;
-    background-color: #ccc;
-
-    border: 1px solid #bbb;
-    border-top-width: 0px;
-    border-bottom-color: #bbb;
-
-    border-bottom-left-radius:  2px;
-    border-bottom-right-radius: 2px;
-
-    box-shadow: inset 0px 3px 0px rgba(0, 0, 0, 0.05);
 }
 
 #new-kaomoji-input,
@@ -100,9 +141,7 @@ h1 {
 
     vertical-align: top;
 
-    background-color: transparent;
-
-    background-color: #f0f0f0;
+    background-color: #eee;
 
     border-radius: 2px;
 
@@ -119,15 +158,20 @@ h1 {
     border-radius: 0px;
 }
 
+#new-kaomoji-input:focus,
+#new-kaomoji-input:hover {
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.05);
+}
+
 .kaomoji.favorited {
-    background-color: #fcfcfc;
+    background-color: #C3D4E6;
     color: #000;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
 .kaomoji.favorited:hover {
-    background-color: #fff;
-    border-bottom-color: rgba(0, 0, 0, 0.25);
+    background-color: #CEDFF2;
+    border-bottom-color: rgba(0, 0, 0, 0.20);
 }
 
 .new-kaomoji {
@@ -170,8 +214,9 @@ h1 {
 
 .kaomoji:hover {
     background-color: #fafafa;
+    border-color: rgba(0, 0, 0, 0.20);
     border-bottom-color: rgba(0, 0, 0, 0.25);
-    box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.10);
+    box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.08);
 }
 
 .kaomoji:active {
@@ -186,13 +231,19 @@ h1 {
 }
 
 #container {
-    list-style-type: none;
+    /* background-color: rgba(0, 0, 0, 0.10);*/
+    /* background-color: #aaa;*/
+    /* background-image: url(bg.png);*/
+
+    /* border: 1px solid rgba(0, 0, 0, 0.20);*/
+    /* box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.25);*/
 
     padding: 0px;
+    padding-top: 8px;
 
     max-width: 760px;
 
-    border: 0px solid #fff;
+    margin: 0px;
 
     border-top-width:    0px;
     border-bottom-width: 0px;
@@ -201,6 +252,7 @@ h1 {
     margin-right:   auto;
 }
 
+h1,
 #footer {
     padding: 6px;
 
@@ -211,9 +263,10 @@ h1 {
     font-weight: bold;
 }
 
+h1,
 #footer a {
     color: rgba(0, 0, 0, 0.45);
-    text-shadow: 0px 1px 1px #fff;
+    text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.50);
 }
 
 #footer a:hover {
@@ -222,11 +275,6 @@ h1 {
 
 #footer #copyright:hover {
     color: #fff;
-}
-
-h1 a,
-h1 {
-    color: #444;
 }
 
 #footer,
@@ -246,23 +294,8 @@ h1 {
 #container .group {
     cursor: pointer;
 
-    background-color: #eee;
-    padding: 2px;
-    border-radius: 2px;
-    margin-bottom: 0px;
     text-align: center;
 
-    border: 1px solid #bbb;
-
-    border-top-color: #888;
-
-    border-left-width:  0px;
-    border-right-width: 0px;
-
-    box-shadow: 0px -3px 0px #729fcf;
-
-    border-left:    1px solid #ccc;
-    border-right:   1px solid #ccc;
 }
 
 #new-kaomoji-input {
@@ -289,7 +322,7 @@ h1 {
     top:   20px;
     right: 20px;
 
-    border-radius: 3px;
+    border-radius: 2px;
 
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.40);
 
@@ -318,12 +351,17 @@ h1 {
 .message {
     margin-top: 1em;
 
-    border: 1px solid   rgba(0, 0, 0, 0.30);
-    border-left-color:  rgba(0, 0, 0, 0.20);
-    border-right-color: rgba(0, 0, 0, 0.20);
-    border-top-color:   rgba(0, 0, 0, 0.15);
+    /* border: 1px solid   rgba(0, 0, 0, 0.30);*/
+    /* border-left-color:  rgba(0, 0, 0, 0.20);*/
+    /* border-right-color: rgba(0, 0, 0, 0.20);*/
+    /* border-top-color:   rgba(0, 0, 0, 0.15);*/
 
-    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.20);
+    /* box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.20);*/
+
+    box-shadow:
+        0px 0px 0px 1px rgba(0, 0, 0, 0.20),
+        inset 0px -3px 0px rgba(0, 0, 0, 0.10),
+        0px 3px 9px 0px rgba(0, 0, 0, 0.20);
 
     padding: 9px;
 
@@ -334,11 +372,18 @@ h1 {
 }
 
 #info-message {
-    background-color: #eec;
+    display: none;
+
+    background-color: #FCF4B0;
 
     max-width: 200px;
 
     position: fixed;
+
+    padding-top:     6px;
+    padding-bottom: 13px;
+    padding-left:    0px;
+    padding-right:   0px;
 
     top:    0px;
     right:  0px;
@@ -348,15 +393,31 @@ h1 {
     z-index: 100;
 }
 
+#info-message * {
+    padding-left:  12px;
+    padding-right: 12px;
+}
+
 #info-message,
 #info-message h2,
 #info-message a {
-    color: #663;
+    color: #807733;
+}
+
+#info-message a {
+    border-radius: 10px;
+
+    padding:        8px;
+    padding-top:    2px;
+    padding-bottom: 2px;
+}
+
+#info-message a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 #info-message h2 {
-    margin-top:    0px;
-    margin-bottom: 0px;
+    margin: 0px;
 
     padding-top: 3px;
 }
@@ -369,7 +430,7 @@ h1 {
 #info-message h2,
 #info-message p {
     padding-bottom: 3px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.10);
 }
 

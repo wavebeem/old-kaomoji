@@ -270,9 +270,16 @@ listen(window, "DOMContentLoaded", function(event) {
     infoMsg   = id("info-message");
     hideHelp  = id("hide-info-message-forever");
 
+    picker.selectedIndex = 0;
+
+    if (localStorage.display_tips !== "false") {
+        infoMsg.style.display = "block";
+    }
+
     listen(hideHelp, "click", function(e) {
         e.preventDefault();
         infoMsg.style.display = "none";
+        localStorage.display_tips = "false";
     });
 
     listen(closeButt, "click", function(e) {
