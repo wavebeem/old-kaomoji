@@ -12,12 +12,6 @@
 **/
 
 html {
-    background-color: #eee;
-    background-color: #ddd;
-    background-color: #fff;
-    background-color: #e4e4e4;
-    background-color: #ccc;
-    background-attachment: fixed;
     color: #444;
 }
 
@@ -62,39 +56,12 @@ h2 a {
 }
 
 #container .group {
-    /* border: 1px solid rgba(0, 0, 0, 0.35);*/
-    /* box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.05);*/
-
-    box-shadow:
-        0px 0px 0px 1px rgba(0, 0, 0, 0.20),
-        0px 0px 0px 4px rgba(0, 0, 0, 0.05);
-
     padding: 0px;
     padding-bottom: 8px;
 
     margin-bottom: 16px;
 
     background-color: #eee;
-
-    border-radius: 2px;
-}
-
-#container h2 {
-    /* margin-left:  0px;*/
-    /* margin-right: 0px;*/
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.40);*/
-    /* box-shadow: inset 0px -3px 0px #729fcf;*/
-}
-
-#container h2 {
-    /* background-color: #777;*/
-    /* background-color: #fafafa;*/
-}
-
-#container h2,
-#container h2 a {
-    /* color: #ccc;*/
-    /* text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.40);*/
 }
 
 #container h2 a {
@@ -107,13 +74,10 @@ h2 a {
     padding-top:    4px;
     padding-bottom: 4px;
     display: inline-block;
-    background-color: #729fcf;
+    background-color: #92B867;
     color: #fff;
     box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.40);
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
-}
-
-h1 {
 }
 
 #new-kaomoji-input,
@@ -164,13 +128,13 @@ h1 {
 }
 
 .kaomoji.favorited {
-    background-color: #C3D4E6;
+    background-color: #D0E6B8;
     color: #000;
     border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
 .kaomoji.favorited:hover {
-    background-color: #CEDFF2;
+    background-color: #E1F2CE;
     border-bottom-color: rgba(0, 0, 0, 0.20);
 }
 
@@ -231,13 +195,6 @@ h1 {
 }
 
 #container {
-    /* background-color: rgba(0, 0, 0, 0.10);*/
-    /* background-color: #aaa;*/
-    /* background-image: url(bg.png);*/
-
-    /* border: 1px solid rgba(0, 0, 0, 0.20);*/
-    /* box-shadow: inset 0px 0px 3px 0px rgba(0, 0, 0, 0.25);*/
-
     padding: 0px;
     padding-top: 8px;
 
@@ -306,16 +263,13 @@ h1,
 }
 
 #info-window {
-    position: fixed;
-    /* position: relative;*/
+    /* position: fixed;*/
+    position: relative;
+
+    display: inline-block;
 
     margin:   0px;
     padding: 10px;
-
-    /* width: 300px;*/
-
-    /* margin-left:  auto;*/
-    /* margin-right: auto;*/
 
     background: #fff;
 
@@ -350,13 +304,6 @@ h1,
 
 .message {
     margin-top: 1em;
-
-    /* border: 1px solid   rgba(0, 0, 0, 0.30);*/
-    /* border-left-color:  rgba(0, 0, 0, 0.20);*/
-    /* border-right-color: rgba(0, 0, 0, 0.20);*/
-    /* border-top-color:   rgba(0, 0, 0, 0.15);*/
-
-    /* box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.20);*/
 
     box-shadow:
         0px 0px 0px 1px rgba(0, 0, 0, 0.20),
@@ -460,6 +407,8 @@ h1,
     right:  0px;
 
     background-color: rgba(238, 238, 238, 0.60);
+
+    text-align: center;
 }
 
 #close-button {

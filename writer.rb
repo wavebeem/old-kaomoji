@@ -75,6 +75,7 @@ def head
     css("style.css") +
     css("selector.css") +
     # css("scrollbars.css") +
+    (EMBED ? "" : css("stalone.css")) +
     (EMBED ? css("embed.css") : "" ) +
     css("icon-font.css") +
 
@@ -150,6 +151,12 @@ def info_window_contents
             "Japanese Emoticons"
         }
     } +
+    (EMBED ? "" : $cgi.p {
+        "Backfround from " +
+        $cgi.a(:href => "http://www.stripegenerator.com/") {
+            "Stripe Generator"
+        }
+    }) +
     copyright +
     close_button
 end
