@@ -152,7 +152,7 @@ def info_window_contents
         }
     } +
     (EMBED ? "" : $cgi.p {
-        "Backfround from " +
+        "Background from " +
         $cgi.a(:href => "http://www.stripegenerator.com/") {
             "Stripe Generator"
         }
