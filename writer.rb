@@ -172,8 +172,10 @@ def info_window_contents
 end
 
 def close_button
-    $cgi.button(:id => "close-button", :type => "button") {
-        $cgi.div(:class => "icon-close")
+    $cgi.div(:id => "close-wrapper") {
+        $cgi.a(:href => "#", :id => "close-button") {
+            "Hide this message"
+        }
     }
 end
 
@@ -192,9 +194,10 @@ end
 
 def footer
     $cgi.div(:id => "footer") {
-        $cgi.a(:id => "help-me", :href => "#") {
-            "Help / About"
-        }
+        [
+            $cgi.a(:id => "help",  :href => "#") { "Help" },
+            $cgi.a(:id => "about", :href => "#") { "About" },
+        ].join(" / ")
     }
 end
 

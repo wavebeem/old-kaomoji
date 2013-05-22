@@ -26,6 +26,7 @@ html {
 }
 
 h1,
+#footer,
 #footer a {
     color: #69854A;
     text-shadow: 0px 0px 3px white;
@@ -33,20 +34,12 @@ h1,
 
 #footer a {
     display: inline-block;
-    border-radius:  2px;
-    padding-top:    2px;
-    padding-left:  10px;
-    padding-right: 10px;
-    padding-bottom: 5px;
+    border-radius: 2px;
 }
 
 #footer a:hover {
     color: #556B3C;
     text-shadow: 0px 0px 9px white;
-}
-
-#footer {
-    margin-bottom: 8px;
 }
 
 #container h2 a:hover {

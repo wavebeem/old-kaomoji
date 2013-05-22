@@ -183,7 +183,8 @@ var favorites;
 var allEmotes;
 var closeButt;
 var overlay;
-var helpMe;
+var help;
+var about;
 var infoMsg;
 var hideHelp;
 
@@ -269,7 +270,8 @@ listen(window, "DOMContentLoaded", function(event) {
     favorites = id("favorites-group");
     closeButt = id("close-button");
     overlay   = id("modal-overlay");
-    helpMe    = id("help-me");
+    help      = id("help");
+    about     = id("about");
     infoMsg   = id("info-message");
     hideHelp  = id("hide-info-message-forever");
 
@@ -293,10 +295,17 @@ listen(window, "DOMContentLoaded", function(event) {
 
     listen(closeButt, "click", function(e) {
         overlay.style.display = "none";
+        e.preventDefault();
     });
 
-    listen(helpMe, "click", function(e) {
+    listen(help, "click", function(e) {
         overlay.style.display = "block";
+        e.preventDefault();
+    });
+
+    listen(about, "click", function(e) {
+        infoMsg.style.display = "block";
+        localStorage.display_tips = "true";
         e.preventDefault();
     });
 
