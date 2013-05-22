@@ -12,8 +12,11 @@
 all: standalone embed
 
 standalone:
-	./writer.rb </dev/null >index.html
+	EMBED=0 ./writer.rb </dev/null >index.html
 embed:
 	EMBED=1 ./writer.rb </dev/null >embed.html
+dropbox:
+	EMBED=0 DEBUG=0 ./writer.rb </dev/null >~/Dropbox/Public/kaomoji/index.html
+	cp bg.png ~/Dropbox/Public/kaomoji
 data:
-	./scraper.rb > kaomoji.json
+	./scraper.rb >kaomoji.json

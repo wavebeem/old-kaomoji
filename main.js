@@ -299,13 +299,13 @@ listen(window, "DOMContentLoaded", function(event) {
     });
 
     listen(help, "click", function(e) {
-        overlay.style.display = "block";
+        infoMsg.style.display = "block";
+        localStorage.display_tips = "true";
         e.preventDefault();
     });
 
     listen(about, "click", function(e) {
-        infoMsg.style.display = "block";
-        localStorage.display_tips = "true";
+        overlay.style.display = "block";
         e.preventDefault();
     });
 
