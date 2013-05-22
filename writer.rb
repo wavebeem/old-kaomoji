@@ -105,18 +105,28 @@ def body
     info_message
 end
 
-def info_tips
-    return <<TIPS.chomp.split(/\n{2,}/)
-Right click a kaomoji to favorite it, or a favorite to remove it.
+def how_to_copy
+    "Click a kaomoji, then " +
+    $cgi.div(:class => "bind") {
+        $cgi.kbd(:class => "modifier") { "Ctrl" } +
+        $cgi.kbd { "C" }
+    } +
+    " to copy it."
+end
 
-Type into the box and hit Enter to add a custom kaomoji.
-TIPS
+def info_tips
+    [
+        (how_to_copy if not EMBED),
+        ("Click a kaomoji to paste it into your current text field." if EMBED),
+        "Right click a kaomoji to favorite it, or a favorite to remove it.",
+        "Type into the box and hit Enter to add a custom kaomoji.",
+    ].compact
 end
 
 def info_message
     $cgi.div(:class => "message", :id => "info-message") {
         $cgi.h2 { "Tips and Tricks" } +
-        info_tips.map{|tip| $cgi.p { tip }}.join +
+        info_tips.map{|tip| $cgi.div(:class => "tip") { tip }}.join +
         $cgi.div(:id => "hide-info-message-forever-container") {
             $cgi.a(:href => "#", :id => "hide-info-message-forever") {
                 "Hide this message"

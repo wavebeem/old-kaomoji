@@ -260,6 +260,9 @@ try {
 catch (e) {
 }
 
+var UA = window.navigator.userAgent;
+var isOsx = /Macintosh/.exec(UA);
+
 listen(window, "DOMContentLoaded", function(event) {
     allEmotes = query(".kaomoji");
     picker    = id("picker");
@@ -275,6 +278,12 @@ listen(window, "DOMContentLoaded", function(event) {
     if (localStorage.display_tips !== "false") {
         infoMsg.style.display = "block";
     }
+
+    // Replace "Ctrl" with the OS X "Command" key
+    if (isOsx) query("kbd.modifier").forEach(function(mod) {
+        mod.innerHTML = "";
+        mod.appendChild(document.createTextNode("\u2318"));
+    });
 
     listen(hideHelp, "click", function(e) {
         e.preventDefault();

@@ -30,6 +30,36 @@ a {
     text-decoration: none;
 }
 
+.bind {
+    display: inline-block;
+}
+
+#info-message .bind {
+    margin: 0px;
+}
+
+kbd {
+    background: #fff;
+    color: #222;
+
+    font-weight: bold;
+
+    border-bottom: 3px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.75);
+
+    display: inline-block;
+
+    padding:       2px;
+    padding-left:  4px;
+    padding-right: 4px;
+
+    min-width: 1em;
+
+    margin: 3px;
+
+    border-radius: 1px;
+}
+
 html,
 body,
 h1,
@@ -119,11 +149,12 @@ h2 a {
     cursor: auto;
     background: #fff;
     border-color: rgba(0, 0, 0, 0.20);
-    border-radius: 0px;
+    border-radius: 1px;
 }
 
 #new-kaomoji-input:focus,
 #new-kaomoji-input:hover {
+    border-color: rgba(0, 0, 0, 0.30);
     box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -340,9 +371,14 @@ h1,
     z-index: 100;
 }
 
-#info-message * {
+#info-message h2,
+#info-message .tip {
     padding-left:  12px;
     padding-right: 12px;
+}
+
+#info-message .tip {
+    text-align: left;
 }
 
 #info-message,
@@ -369,19 +405,20 @@ h1,
     padding-top: 3px;
 }
 
-#info-message p {
+#info-message .tip {
+    display: block;
     margin-top:    3px;
     margin-bottom: 3px;
 }
 
 #info-message h2,
-#info-message p {
+#info-message .tip {
     padding-bottom: 3px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.10);
 }
 
-#info-message p:first-child {
+#info-message .tip:first-child {
 }
 
 #info-message div {
@@ -419,7 +456,10 @@ h1,
     background-color: #444;
     color: #fff;
 
-    border: 0px solid #fff;
+    width:  32px;
+    height: 32px;
+
+    border: 2px solid #fff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.40);
 
     font-weight: bold;
