@@ -1,0 +1,1038 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><HTML>
+<!--
+   ___   _                           ____ __ __  
+  / _ ) (_)___  ___ _ ____ __ __    / __// // /__
+ / _  |/ // _ \/ _ `// __// // /   / _/ / //  '_/
+/____//_//_//_/\_,_//_/   \_, /   /___//_//_/\_\ 
+                         /___/                   
+
+ This is generated output from the the Kaomoji Picker program written by Brian
+ Mock and Kyle Paulsen. For more information, visit
+ https://github.com/saikobee/kaomoji
+
+-->
+<HEAD><META http-equiv="Content-Type" content="text/html; charset=utf-8"><META name="viewport" content="width=device-width, initial-scale=1"><STYLE type="text/css">/**
+*** Copyright © 2013 Brian Mock & Kyle Paulsen <binary.elk@gmail.com>
+*** This work is free. You can redistribute it and/or modify it under the
+*** terms of the Do What The Fuck You Want To Public License, Version 2,
+*** as published by Sam Hocevar. See the COPYING file for more details.
+***
+*** This program is free software. It comes without any warranty, to
+*** the extent permitted by applicable law. You can redistribute it
+*** and/or modify it under the terms of the Do What The Fuck You Want
+*** To Public License, Version 2, as published by Sam Hocevar. See
+*** http://www.wtfpl.net/ for more details.
+**/
+
+html {
+    color: #444;
+}
+
+html,
+body {
+    margin:  0px;
+    padding: 0px;
+}
+
+body {
+    margin-left:  9px;
+    margin-right: 9px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.bind {
+    display: inline-block;
+}
+
+#info-message .bind {
+    margin: 0px;
+}
+
+kbd {
+    background: #fff;
+    color: #222;
+
+    font-weight: bold;
+
+    border-bottom: 3px solid rgba(0, 0, 0, 0.05);
+
+    box-shadow:
+              0px  0px 1px rgba(0, 0, 0, 0.75),
+        inset 0px -1px 0px rgba(0, 0, 0, 0.10);
+
+    display: inline-block;
+
+    padding:       2px;
+    padding-left:  4px;
+    padding-right: 4px;
+
+    min-width: 1em;
+
+    margin: 3px;
+
+    border-radius: 1px;
+}
+
+html,
+body,
+h1,
+h2 {
+    font-family:
+        "Helvetica",
+        "Arial",
+        sans-serif;
+}
+
+h1,
+h2 {
+    text-align: center;
+
+    font-size: 18px;
+
+    padding: 10px;
+    margin:   4px;
+}
+
+h1 {
+    margin-top: 16px;
+}
+
+h2,
+h2 a {
+    color: #666;
+}
+
+#container .group {
+    padding: 0px;
+    padding-bottom: 8px;
+
+    margin-bottom: 16px;
+
+    background-color: #eee;
+}
+
+#container h2 a {
+    margin: 4px;
+    min-width: 100px;
+    border-radius: 2px;
+    border-radius: 6px;
+    border-radius: 10px;
+    padding:        8px;
+    padding-top:    4px;
+    padding-bottom: 4px;
+    display: inline-block;
+    background-color: #92B867;
+    color: #fff;
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.40);
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+#new-kaomoji-input,
+.kaomoji {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size:   16px;
+
+    cursor: pointer;
+
+    display: inline-block;
+
+    color: #666;
+
+    resize: none;
+
+    height: 1.2em;
+
+    min-width: 10em;
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+
+    margin:   3px;
+    padding: 10px;
+
+    vertical-align: top;
+
+    background-color: #eee;
+
+    border-radius: 2px;
+
+    text-align: center;
+
+    position: relative;
+    top: 0px;
+}
+
+#new-kaomoji-input {
+    cursor: auto;
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.20);
+    border-radius: 1px;
+}
+
+#new-kaomoji-input:focus,
+#new-kaomoji-input:hover {
+    border-color: rgba(0, 0, 0, 0.30);
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.05);
+}
+
+.kaomoji.favorited {
+    background-color: #D0E6B8;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.kaomoji.favorited:hover {
+    background-color: #E1F2CE;
+    border-bottom-color: rgba(0, 0, 0, 0.20);
+}
+
+.new-kaomoji {
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size:   16px;
+
+    display: inline-block;
+
+    color: #666;
+
+    resize: none;
+
+    height: 1.2em;
+
+    min-width: 10em;
+
+    border: 1px solid #e0e0e0;
+
+    margin:   3px;
+    padding: 10px;
+
+    vertical-align: top;
+
+    background-color: transparent;
+
+    background-color: #f0f0f0;
+
+    border-radius: 2px;
+
+    text-align: center;
+
+    position: relative;
+    top: 0px;
+}
+
+.kaomoji:focus {
+    outline: none;
+}
+
+.kaomoji:hover {
+    background-color: #fafafa;
+    border-color: rgba(0, 0, 0, 0.20);
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.08);
+}
+
+.kaomoji:active {
+    background-image: none;
+}
+
+.kaomoji:active {
+    background-color: #eee;
+
+    box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+#container {
+    padding: 0px;
+    padding-top: 8px;
+
+    max-width: 760px;
+
+    margin: 0px;
+
+    border-top-width:    0px;
+    border-bottom-width: 0px;
+
+    margin-left:    auto;
+    margin-right:   auto;
+}
+
+h1,
+#footer {
+    padding: 6px;
+
+    text-align: center;
+
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+h1,
+#footer,
+#footer a {
+    color: rgba(0, 0, 0, 0.45);
+    text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.50);
+}
+
+#footer a:hover {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+#footer #copyright:hover {
+    color: #fff;
+}
+
+#footer,
+#copyright {
+    color: #ccc;
+}
+
+#footer p {
+    margin: 2px;
+}
+
+#footer {
+    margin-top: -12px;
+    margin-bottom: 16px;
+}
+
+#close-wrapper,
+#copyright {
+    display: block;
+}
+
+#container .group {
+    cursor: pointer;
+
+    text-align: center;
+
+}
+
+#new-kaomoji-input {
+}
+
+#new-kaomoji-input:focus {
+    outline: none;
+}
+
+#info-window {
+    /* position: fixed;*/
+    position: relative;
+
+    display: inline-block;
+
+    margin:   0px;
+    padding: 10px;
+
+    background: #fff;
+
+    top:   20px;
+    right: 20px;
+
+    border-radius: 2px;
+
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.40);
+
+    border-bottom: 3px solid rgba(0, 0, 0, 0.05);
+
+    font-size: 120%;
+
+    z-index: 9000;
+
+    color: #666;
+}
+
+#info-window p {
+    margin-top:     6px;
+    margin-bottom:  6px;
+}
+
+#info-window a {
+    color: #68a;
+}
+
+#info-window a:hover {
+    color: #8ac;
+}
+
+.message {
+    margin-top: 1em;
+
+    box-shadow:
+        0px 0px 0px 1px rgba(0, 0, 0, 0.20),
+        inset 0px -3px 0px rgba(0, 0, 0, 0.10),
+        0px 3px 9px 0px rgba(0, 0, 0, 0.20);
+
+    padding: 9px;
+
+    border-radius: 2px;
+
+    background-color: #fff;
+    color: #333;
+}
+
+#info-message {
+    display: none;
+
+    background-color: #FCF4B0;
+
+    max-width: 200px;
+
+    position: fixed;
+
+    padding-top:     6px;
+    padding-bottom: 13px;
+    padding-left:    0px;
+    padding-right:   0px;
+
+    top:    0px;
+    right:  0px;
+
+    margin: 6px;
+
+    z-index: 100;
+}
+
+#info-message h2,
+#info-message .tip {
+    padding-left:  12px;
+    padding-right: 12px;
+}
+
+#info-message .tip {
+    text-align: left;
+}
+
+#info-message,
+#info-message h2,
+#info-message a {
+    color: #807733;
+}
+
+#info-message a {
+    border-radius: 10px;
+
+    padding:        8px;
+    padding-top:    2px;
+    padding-bottom: 2px;
+}
+
+#info-message a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#info-message h2 {
+    margin: 0px;
+
+    padding-top: 3px;
+}
+
+#info-message .tip {
+    display: block;
+    margin-top:    3px;
+    margin-bottom: 3px;
+}
+
+#info-message h2,
+#info-message .tip {
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.10);
+}
+
+#info-message .tip:first-child {
+}
+
+#info-message div {
+    margin-top: 9px;
+    text-align: center;
+}
+
+#info-message a {
+    font-weight: bold;
+    font-size: 80%;
+}
+
+#modal-overlay {
+    display: none;
+
+    position: fixed;
+
+    z-index: 8000;
+
+    top:    0px;
+    bottom: 0px;
+    left:   0px;
+    right:  0px;
+
+    background-color: rgba(238, 238, 238, 0.60);
+
+    text-align: center;
+}
+
+#close-wrapper {
+    margin-bottom: -3px;
+    margin-top:    10px;
+    margin-left:  -10px;
+    margin-right: -10px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#close-button {
+    display: inline-block;
+
+    margin-top: 6px;
+
+    padding:        2px;
+    padding-left:   4px;
+    padding-right:  4px;
+
+    font-size: 75%;
+
+    font-weight: bold;
+
+    border-radius: 6px;
+}
+
+#close-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+a#close-button:hover {
+    color: #333;
+}
+</STYLE><STYLE type="text/css">/**
+*** Copyright © 2013 Brian Mock & Kyle Paulsen <binary.elk@gmail.com>
+*** This work is free. You can redistribute it and/or modify it under the
+*** terms of the Do What The Fuck You Want To Public License, Version 2,
+*** as published by Sam Hocevar. See the COPYING file for more details.
+***
+*** This program is free software. It comes without any warranty, to
+*** the extent permitted by applicable law. You can redistribute it
+*** and/or modify it under the terms of the Do What The Fuck You Want
+*** To Public License, Version 2, as published by Sam Hocevar. See
+*** http://www.wtfpl.net/ for more details.
+**/
+
+#groups:hover {
+    background-color: #fff;
+}
+
+#groups select {
+    background-color: #eee;
+    color: #444;
+}
+
+.toolbar {
+    position: fixed;
+
+    /* display: none;*/
+
+    padding:  0px;
+    margin:   0px;
+
+    padding-left:   0px;
+    padding-right:  0px;
+
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.30);
+
+    opacity: 1.00;
+
+    z-index: 4000;
+}
+
+#groups {
+    top:    0px;
+    left:   0px;
+
+    border-bottom-right-radius: 8px;
+}
+
+.toolbar,
+#groups select {
+    background-color: #fff;
+    color: #888;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#jump-to {
+    cursor: pointer;
+
+    position: fixed;
+    content: "Jump to...";
+    top:  2px;
+    left: 7px;
+
+    margin:  0px;
+    padding: 0px;
+
+    font-size:  16px;
+    line-height: 16px;
+
+    font-family:
+        "Lucida Grande",
+        "Segoe UI",
+        sans-serif;
+
+    font-weight: bold;
+}
+
+#groups:hover {
+    color: #444;
+}
+
+#groups select {
+    border: none;
+
+    padding: 0px;
+
+    opacity: 0.00;
+
+    width:  90px;
+    height: 22px;
+}
+
+#groups select:focus {
+    outline: none;
+}
+</STYLE><STYLE type="text/css">/**
+*** Copyright © 2013 Brian Mock & Kyle Paulsen <binary.elk@gmail.com>
+*** This work is free. You can redistribute it and/or modify it under the
+*** terms of the Do What The Fuck You Want To Public License, Version 2,
+*** as published by Sam Hocevar. See the COPYING file for more details.
+***
+*** This program is free software. It comes without any warranty, to
+*** the extent permitted by applicable law. You can redistribute it
+*** and/or modify it under the terms of the Do What The Fuck You Want
+*** To Public License, Version 2, as published by Sam Hocevar. See
+*** http://www.wtfpl.net/ for more details.
+**/
+
+html {
+    background-color: #C8E0AB;
+    background-image: url(bg.png);
+    background-attachment: fixed;
+}
+
+#container .group {
+    box-shadow:
+        0px 0px 0px 1px rgba(0, 0, 0, 0.20),
+        0px 0px 0px 4px rgba(0, 0, 0, 0.05);
+
+    border-radius: 2px;
+}
+
+h1,
+#footer,
+#footer a {
+    color: #69854A;
+    text-shadow: 0px 0px 3px white;
+}
+
+#footer a {
+    display: inline-block;
+    border-radius: 2px;
+}
+
+#footer a:hover {
+    color: #556B3C;
+    text-shadow: 0px 0px 9px white;
+}
+
+#container h2 a:hover {
+    background-color: #A2C777;
+}
+</STYLE><STYLE type="text/css">/*
+ * Copyright © 2013 IcoMoon (http://icomoon.io)
+ * ==========================================
+ *
+ * Licensed under Creative Commons Atribution 3.0 Unported (CC BY 3.0)
+ * http://creativecommons.org/licenses/by/3.0/
+ *
+ * +------------------------------------------------------------------+
+ * | Brian Mock & Kyle Paulsen does not claim copyright on this file. |
+ * +------------------------------------------------------------------+
+ *
+ */
+
+@font-face {
+	font-family: 'Binary-Elk-Arrows';
+	src:url('fonts/Binary-Elk-Arrows.eot');
+}
+@font-face {
+	font-family: 'Binary-Elk-Arrows';
+	src: url(data:application/x-font-woff;charset=utf-8;base64,d09GRk9UVE8AAAXEAAsAAAAACUAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAABCAAAAn0AAAPnwEB7j0ZGVE0AAAOIAAAAGgAAABxnl3QwR0RFRgAAA6QAAAAcAAAAIAAyAARPUy8yAAADwAAAAE0AAABgUBneH2NtYXAAAAQQAAAAUAAAAWIBz/gyaGVhZAAABGAAAAAuAAAANvx5Eh1oaGVhAAAEkAAAAB4AAAAkBBD/5mhtdHgAAASwAAAAEAAAABQIAAAAbWF4cAAABMAAAAAGAAAABgAFUABuYW1lAAAEyAAAAO0AAAIEOesX9XBvc3QAAAW4AAAADAAAACAAAwAAeJxlk01oE1EQx2ezu2msYauhAQtbq+hJqQSMQjwUGqpYL5Umh/QkShH6FSGuippEtDUenqewXiyKB9FCK/RUepAgCgXF3vTgyZ7rpZZCNt0248x76SI0hz+z72P+v3kz0cAwQNO0WHosf71wv/fi5ERvf6Fw695t0EKgQZ9nh7xu3TtiiKguosbRdujKxFCIIIi2iXHvheeYNrgdNsAhG14dtsGy9V8x0DlHBLrg1J382KVEIrHPZr8v/XpgBLq1Z2Dy9RCc0E39pH7G8ty6E/dd3xX1JAnSyXQ9i4BYE7RkWqj52Y8IA/NP4wjaQgSxmVmm6NwTig6u0IWVOcTdPxWEUE8ZcXvoN2183UFs5H4i+lOWFLq39GaGJW3yQrW11cj9oOPf+vjia05RbCWTaZvRCFs9ZlOH7Q9QHmzepW0tjDj6wUKYzZxVEY4urFJuxDJLKYhqgZQ4zxJJNsXwFXZ+xH4EhqmcYsDdNfpsjOTY+TNhTq4iGNVNWUEaYfBaSVbQIVdVrRB+f5rhawjm4nGGX6fPzocKHrStFMn8CldwRT4xy3Qg/YHMRLigJIvDBX2naHiDa17mmi+bDH9hrxEET7lrCp78HjD8NDMcY+cvxPVunTH/tiog+BrLJ1PBkyzyoTk6ft7gi285RZqTFTntSwVPVmU2HZT2EYnSgpod3vwPVHLL5ihauvN8r/StohobCUpPdJP9bqieSwY5B+pR/amrkrbMj16RtBtqYiSoGhvZqO2hNQVKbRxQoHIuqdOebHdrYiQtzUk1oM3LyLTqjlF3667wkyRyVvwsEmBa0JJpCc8xdlzPbaP/SqeITwjPFWERbf8Hl5kJogAAAHicY2BgYGQAgjO2i86D6LNrXmyA0QBVxwieAAB4nGNgZGBg4ANiCQYQYGJgBEIWMAbxGAAEdgA3eJxjYGZiYJzAwMrAwejDmMbAwOAOpb8ySDK0MDAwMbAyM8AAowADAgSkuaYwODDYfGBgfPD/AYMe4wMGhQagGrDC+0BCAQgZAQOaDFwAAAB4nGNgYGBmgGAZBkYGEIgB8hjBfBYGByDNw8DBwARkMzDYMNgxVHxg+P8frA6J9//4/8P/uwRYoCbAASMbA7oQSYCZAt1MFNhLTQAA908N8nicY2BkYGAA4gc5853j+W2+MnAzMYDA2TUvNiDo/w+YGBgfALkcDGBpAGKBDMsAAHicY2BkYGB88P8Bgx4TAwPDPwYgCRRBAawAbekD+AAAeJxjYmBgYELCIAAAAIQACQAAUAAABQAAeJydj8tqwkAUhr+JUehlI0jXg3TphCTFUNwp6Mq17aIbF0GCMgOjIL5I36Mv1GfpSXoWhRYKDhzON//85zLAPe8Y2mMY8qiccMtauceED+WUoUmU+9yZifJA9DdxmvRGlHFX1XLCiEq5xysvyql4PpX7PJiR8oCxeWZBg2dL5IJjyYG95LncI4EzR1g0fhsvbnnYu3mM4SzSn76fhpWInlOXIztqLCUZueSZxP9jv32VqFOJUioLnqRx8KdViLvallluZ/bXcqJVburKvBD3db/byLpR3pruE1YGt4uzqeOxCd4WWX5l5y8EXlTuAAAAeJxjYGbACwAAfQAE) format('woff'),
+		 url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAANAIAAAwBQRkZUTWeXdDAAAAacAAAAHEdERUYANAAGAAAGfAAAACBPUy8yT/fcHwAAAVgAAABWY21hcAPT/TsAAAHMAAABYmdhc3D//wADAAAGdAAAAAhnbHlmXGpo5AAAA0AAAAD4aGVhZPx5Eh0AAADcAAAANmhoZWEEEP/oAAABFAAAACRobXR4CKoAAQAAAbAAAAAcbG9jYQCAANgAAAMwAAAAEG1heHAASgAvAAABOAAAACBuYW1lOesX9QAABDgAAAIEcG9zdE3vn/gAAAY8AAAAOAABAAAAAQAAXPZq1F8PPPUACwIAAAAAAM2s6LAAAAAAzazosAAA/+ACAAHgAAAACAACAAAAAAAAAAEAAAHg/+AALgIAAAD+AAIAAAEAAAAAAAAAAAAAAAAAAAAHAAEAAAAHACwAAQAAAAAAAgAAAAEAAQAAAEAAAAAAAAAAAQIAAZAABQAIAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAIABQMAAAAAAAAAAAABEAAAAAAAAAAAAAAAUGZFZABAADzwAAHg/+AALgHgACCAAAABAAAAAAAAAgAAAAAAAAAAqgAAAgAAAAIAAAECAAAAAAAAAAAAAAMAAAADAAAAHAABAAAAAABcAAMAAQAAABwABABAAAAADAAIAAIABAAAADwAPgB48AD//wAAAAAAPAA+AHjwAP//AAD/yf/F/4wQBgABAAAAAAAAAAAAAAAAAAABBgAAAQAAAAAAAAABAgAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgBcAG4AfAABAAD/4AIAAeAABgAAJQEVIRUhFQIA/wD/AAEA4AEAoMCgAAABAAH/4QH/Ad8AKwAAJSc3Njc2LwEmBwYPAScmJyYPAQYXFh8BBwYHBh8BFjc2PwEXFhcWPwE2JyYB+5ubAwEECEkHCgMDm5sDAwoHSQgEAQObmwMBBAhJBwoDA5ubAwMKB0kIBAFFm5sDAwoHSQgEAQObmwMBBAhJBwoDA5ubAwMKB0kIBAEDm5sDAQQISQcKAwAAAQAA/+ACAAHgAAYAADUBNSE1ITUBAAEA/wDg/wCgwKAAAAAAAQAA/+ACAAHgAAIAABEBIQIA/gAB4P4AAAAAAAAADACWAAEAAAAAAAEAEQAkAAEAAAAAAAIACgBMAAEAAAAAAAMALACxAAEAAAAAAAQAEQECAAEAAAAAAAUACwEsAAEAAAAAAAYAEQFcAAMAAQQJAAEAIgAAAAMAAQQJAAIAFAA2AAMAAQQJAAMAWABXAAMAAQQJAAQAIgDeAAMAAQQJAAUAFgEUAAMAAQQJAAYAIgE4AEIAaQBuAGEAcgB5AC0ARQBsAGsALQBBAHIAcgBvAHcAcwAAQmluYXJ5LUVsay1BcnJvd3MAAEUAbABrAC0AQQByAHIAbwB3AHMAAEVsay1BcnJvd3MAAEYAbwBuAHQARgBvAHIAZwBlACAAMgAuADAAIAA6ACAAQgBpAG4AYQByAHkALQBFAGwAawAtAEEAcgByAG8AdwBzACAAOgAgADYALQA1AC0AMgAwADEAMwAARm9udEZvcmdlIDIuMCA6IEJpbmFyeS1FbGstQXJyb3dzIDogNi01LTIwMTMAAEIAaQBuAGEAcgB5AC0ARQBsAGsALQBBAHIAcgBvAHcAcwAAQmluYXJ5LUVsay1BcnJvd3MAAFYAZQByAHMAaQBvAG4AIAAxAC4AMAAAVmVyc2lvbiAxLjAAAEIAaQBuAGEAcgB5AC0ARQBsAGsALQBBAHIAcgBvAHcAcwAAQmluYXJ5LUVsay1BcnJvd3MAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAEAAgAhAFsAHwECB3VuaUYwMDAAAAAB//8AAgABAAAADgAAABgAAAAAAAIAAQADAAYAAQAEAAAAAgAAAAAAAQAAAADMPaLPAAAAAM2s6LAAAAAAzazosA==) format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon-arrow-right, .icon-close, .icon-arrow-left {
+	font-family: 'Binary-Elk-Arrows';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.icon-arrow-right:before {
+	content: "\3e";
+}
+
+.icon-close:before {
+	content: "\78";
+}
+
+.icon-arrow-left:before {
+	content: "\3c";
+}
+</STYLE><SCRIPT type="text/javascript">var DEBUG = false;
+var EMBED = false;
+</SCRIPT><SCRIPT type="text/javascript">/// Copyright © 2013 Brian Mock & Kyle Paulsen <binary.elk@gmail.com>
+/// This work is free. You can redistribute it and/or modify it under the
+/// terms of the Do What The Fuck You Want To Public License, Version 2,
+/// as published by Sam Hocevar. See the COPYING file for more details.
+///
+/// This program is free software. It comes without any warranty, to
+/// the extent permitted by applicable law. You can redistribute it
+/// and/or modify it under the terms of the Do What The Fuck You Want
+/// To Public License, Version 2, as published by Sam Hocevar. See
+/// http://www.wtfpl.net/ for more details.
+
+"use strict";
+
+function $create(ele, attrs, styles) {
+    var ele = document.createElement(ele);
+    for (var attr in attrs) {
+        if (attrs.hasOwnProperty(attr)) {
+            ele[attr] = attrs[attr];
+        }
+    }
+
+    for (var style in styles) {
+        if (styles.hasOwnProperty(style)) {
+            ele.style[style] = styles[style];
+        }
+    }
+
+    return ele;
+}
+
+function listen(elem, name, callback, bubble) {
+    elem.addEventListener(name, callback, !!bubble);
+}
+
+var slice = [].slice;
+function query(s, e) {
+    e = e || document;
+    return slice.call(e.querySelectorAll(s));
+}
+
+function id(id) {
+    return document.getElementById(id);
+}
+
+function selectText(elem) {
+    elem.select();
+}
+
+function addClass(elem, klass) {
+    elem.classList.add(klass);
+}
+
+function removeClass(elem, klass) {
+    elem.classList.remove(klass);
+}
+
+function hasClass(elem, klass) {
+    return elem.classList.contains(klass);
+}
+
+var max = Math.max;
+var min = Math.min;
+function clamp(x, a, b) {
+    return max(min(x, b), a);
+}
+
+function chr(code) {
+    return String.fromCharCode(code);
+}
+
+var groupIndex = 1;
+function jumpBy(offset) {
+    var n = picker.length - 1;
+    groupIndex = clamp(groupIndex + offset, 1, n);
+    picker.selectedIndex = groupIndex;
+    gotoValue();
+}
+
+function gotoValue() {
+    window.location.hash = "-";
+    window.location.hash = picker.value;
+    picker.selectedIndex = 0;
+}
+
+function clearSelection() {
+    var sel = document.selection;
+    if (sel && sel.empty) {
+        sel.empty();
+    }
+    else {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        }
+        var active = document.activeElement;
+        if (active) {
+            var tagName = active.nodeName;
+            if (tagName === "TEXTAREA" ||
+                (tagName === "INPUT" && active.type === "text")) {
+                active.selectionStart = active.selectionEnd;
+            }
+        }
+    }
+}
+
+function populateFavorites() {
+    var newEmote = $create("input", {
+        type        : "text",
+        id          : "new-kaomoji-input",
+        placeholder : "add custom kaomoji...",
+    }, {});
+
+    listen(newEmote, "blur", function() {
+        if (newEmote.value.length > 0) {
+            addEmoteFavorite(newEmote.value);
+            highlightFavorites(newEmote.value);
+            newEmote.value = "";
+        }
+    });
+
+    listen(newEmote, "keydown", function(e) {
+        if (newEmote.value.length > 0 && e.which === K.ENTER) {
+            addEmoteFavorite(newEmote.value);
+            highlightFavorites(newEmote.value);
+            newEmote.value = "";
+        }
+    });
+
+    favorites.appendChild(newEmote);
+
+    highlightFavorites();
+
+    store.forEach(makeEmote);
+}
+
+function saveFaves() {
+    try {
+        localStorage.favorites = JSON.stringify(store);
+    }
+    catch (e) {
+    }
+}
+
+function addEmoteFavorite(text) {
+    store.push(text);
+    makeEmote(text);
+    saveFaves();
+}
+
+function removeEmoteFavorite(text) {
+    var loc = store.indexOf(text);
+    if (loc >= 0) {
+        store.splice(loc, 1);
+        saveFaves();
+    }
+}
+
+function makeEmote(text) {
+    var newEmote;
+    if (EMBED) {
+        newEmote = $create("button", {
+            className   : "kaomoji",
+            type        : "button",
+        }, {});
+        newEmote.setAttribute("data-text", text);
+        newEmote.appendChild(document.createTextNode(text));
+    }
+    else {
+        newEmote = $create("input", {
+            className   : "kaomoji",
+            type        : "text",
+            value       : text,
+            size        : "1",
+            readonly    : "readonly",
+        }, {});
+    }
+
+    favorites.insertBefore(newEmote, id("new-kaomoji-input"));
+}
+
+var picker;
+var store = [];
+var favorites;
+var allEmotes;
+var closeButt;
+var overlay;
+var help;
+var about;
+var infoMsg;
+var hideHelp;
+
+var K = {
+    ESC     : 27,
+    ENTER   : 13,
+};
+
+function kaomojiText(elem) {
+    return EMBED
+        ? elem.getAttribute("data-text")
+        : elem.value;
+}
+
+function highlightFavorites(toHighlight) {
+    toHighlight = (typeof toHighlight === "undefined")
+        ? store
+        : [toHighlight];
+
+    allEmotes.forEach(function(btn) {
+        var text = kaomojiText(btn);
+        if (toHighlight.indexOf(text) >= 0) {
+            addClass(btn, "favorited");
+        }
+    });
+}
+
+function unhighlightFavorite(elements, text, remove) {
+    var i = 0;
+    var n = elements.length;
+    for (; i < n; ++i) {
+        var elem = elements[i];
+
+        if (kaomojiText(elem) !== text)
+            continue;
+
+        if (remove) {
+            elem.parentNode.removeChild(elem);
+            break;
+        }
+        else if (elem.parentNode.id !== "favorites-group") {
+            removeClass(elem, "favorited");
+            break;
+        }
+    }
+}
+
+function toggleFavorite(elem) {
+    var text = kaomojiText(elem);
+
+    // Removing favorite from favorites group
+    if (elem.parentNode.id === "favorites-group") {
+        unhighlightFavorite(allEmotes, text, false);
+        removeEmoteFavorite(text);
+        favorites.removeChild(elem);
+    }
+    // Toggle favorite from any other group
+    else if (hasClass(elem, "favorited")) {
+        var favoriteEmotes = query(".kaomoji", favorites);
+        unhighlightFavorite(favoriteEmotes, text, true);
+        removeEmoteFavorite(text);
+        removeClass(elem, "favorited");
+    }
+    // Add favorite
+    else {
+        addEmoteFavorite(text);
+        addClass(elem, "favorited");
+    }
+}
+
+try {
+    store = JSON.parse(localStorage.favorites);
+}
+catch (e) {
+}
+
+var UA = window.navigator.userAgent;
+var isOsx = /Macintosh/.exec(UA);
+
+listen(window, "DOMContentLoaded", function(event) {
+    allEmotes = query(".kaomoji");
+    picker    = id("picker");
+    favorites = id("favorites-group");
+    closeButt = id("close-button");
+    overlay   = id("modal-overlay");
+    help      = id("help");
+    about     = id("about");
+    infoMsg   = id("info-message");
+    hideHelp  = id("hide-info-message-forever");
+
+    picker.selectedIndex = 0;
+
+    if (localStorage.display_tips !== "false") {
+        infoMsg.style.display = "block";
+    }
+
+    // Replace "Ctrl" with the OS X "Command" key
+    if (isOsx) query("kbd.modifier").forEach(function(mod) {
+        mod.innerHTML = "";
+        mod.appendChild(document.createTextNode("\u2318"));
+    });
+
+    listen(hideHelp, "click", function(e) {
+        e.preventDefault();
+        infoMsg.style.display = "none";
+        localStorage.display_tips = "false";
+    });
+
+    listen(closeButt, "click", function(e) {
+        overlay.style.display = "none";
+        e.preventDefault();
+    });
+
+    listen(help, "click", function(e) {
+        infoMsg.style.display = "block";
+        localStorage.display_tips = "true";
+        e.preventDefault();
+    });
+
+    listen(about, "click", function(e) {
+        overlay.style.display = "block";
+        e.preventDefault();
+    });
+
+    // Left click to select text
+    listen(document, 'click', function(e) {
+        var elem = e.target;
+        if (elem.nodeName === "INPUT"
+        && hasClass(elem, "kaomoji")
+        && e.which === 1) {
+            e.preventDefault();
+            selectText(elem);
+        }
+    });
+
+    listen(picker, "change", gotoValue);
+
+    // Right click to favorite
+    listen(document, 'contextmenu', function(e) {
+        var elem = e.target;
+        if (hasClass(elem, "kaomoji")) {
+            e.preventDefault();
+            toggleFavorite(elem);
+        }
+        clearSelection();
+    });
+
+    populateFavorites();
+});
+</SCRIPT><TITLE>Kaomoji Selector :: Brian Mock & Kyle Paulsen</TITLE></HEAD><BODY><DIV id="groups" class="toolbar"><DIV id="jump-to">Jump to...</DIV><SELECT id="picker"><OPTION value="_" disabled="disabled">Jump to...</OPTION><OPTION value="favorites">Favorites</OPTION><OPTION value="action">Action</OPTION><OPTION value="angry">Angry</OPTION><OPTION value="animal">Animal</OPTION><OPTION value="apologizing">Apologizing</OPTION><OPTION value="bear">Bear</OPTION><OPTION value="cat">Cat</OPTION><OPTION value="confused">Confused</OPTION><OPTION value="dancing">Dancing</OPTION><OPTION value="dead">Dead</OPTION><OPTION value="defeat">Defeat</OPTION><OPTION value="dog">Dog</OPTION><OPTION value="drinking">Drinking</OPTION><OPTION value="evil">Evil</OPTION><OPTION value="fish">Fish</OPTION><OPTION value="friends">Friends</OPTION><OPTION value="greetings">Greetings</OPTION><OPTION value="happy">Happy</OPTION><OPTION value="hiding">Hiding</OPTION><OPTION value="infatuation">Infatuation</OPTION><OPTION value="kissing">Kissing</OPTION><OPTION value="laughing">Laughing</OPTION><OPTION value="mellow">Mellow</OPTION><OPTION value="miscellaneous">Miscellaneous</OPTION><OPTION value="monkey">Monkey</OPTION><OPTION value="mustache">Mustache</OPTION><OPTION value="painful">Painful</OPTION><OPTION value="pig">Pig</OPTION><OPTION value="sad">Sad</OPTION><OPTION value="scared">Scared</OPTION><OPTION value="shocked">Shocked</OPTION><OPTION value="shy">Shy</OPTION><OPTION value="singing">Singing</OPTION><OPTION value="sleeping">Sleeping</OPTION><OPTION value="smug">Smug</OPTION><OPTION value="winking">Winking</OPTION><OPTION value="worried">Worried</OPTION><OPTION value="writing">Writing</OPTION></SELECT></DIV><DIV id="container"><H1>Kaomoji Picker</H1><DIV id="favorites-group" class="group"><H2 id="favorites"><A href="#favorites">Favorites</A></H2></DIV><DIV class="group"><H2 id="action"><A href="#action">Action</A></H2><INPUT value="@(o･ｪ･)@" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="└@(･ｪ･)@┐" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(｡･o･)@" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(o･ｪ･o)@" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(/o･ｪ･o)@/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(*^ｪ^)@" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="angry"><A href="#angry">Angry</A></H2><INPUT value="(*≧m≦*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(&gt;_&lt;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(,,#ﾟДﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(ｏ`皿′ｏ)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(&gt;&lt; )o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ｏ( &gt;&lt;)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(≧Д≦)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＞д＜）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（;≧皿≦）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="[○･｀Д´･○]" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(#`Д´)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Σ(-`Д´-ﾉ；)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((p(&gt;o&lt;)q)))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/ﾟДﾟ)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(¬д¬。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(#`Д´)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (¬､¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" （；¬＿¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (;¬_¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (；¬д¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (≧σ≦)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" o(-`д´- ｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ヽ(●-`Д´-)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (*￣m￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (´Д｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (；￣Д￣）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (¬_¬)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(＃｀д´)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(」゜ロ゜)」" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Σ(▼□▼メ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(━┳━ _ ━┳━)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(┳◇┳)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="{{|└(&gt;o&lt; )┘|}}" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(＠O＠)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（≧▼≦；)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(〇O〇)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="s(・｀ヘ´・;)ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（▼へ▼メ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(`O´θ／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="θ＼(；￢_￢)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ヽ(｀⌒´メ)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" 凸(-0-メ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" 凸(｀△´＋）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" 凸(｀0´)凸" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" 凸(｀⌒´メ)凸" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ＼(｀0´)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" -`д´-" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (&gt;人&lt;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="щ(ಠ益ಠщ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノಠ益ಠ)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="щ(ಥДಥщ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(≧o≦)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (⋋▂⋌)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◣_◢)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ᕙ(⇀‸↼‶)ᕗ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ᕦ(ò_óˇ)ᕤ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ಠ ಠ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (¬▂¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (¬_¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ಥ⌣ಥ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ಠ_ಠ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="animal"><A href="#animal">Animal</A></H2><INPUT value="(=ﾟωﾟ)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(○’ω’○)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="[´・ω・`]" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(｡･ω･｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´-ω-｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*･ω･)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*-ω-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┗(･ω･;)┛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｛・ω-*}" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(* &gt;ω&lt;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(ｏ･ω･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="w(´･ω･`)w" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´・ω・`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(・ω・；)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Σ(・ω・`|||)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(・ω・ｏ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´o・┏ω┓・o｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(･ω･｡)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ･ω･)ﾉﾞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(･ω･ゞ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(･ω･`｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。-`ω´-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=ﾟωﾟ)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡+･`ω･´)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(｡ゝω・｡)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´・ω・`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂^j^⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（⊂((・⊥・))⊃）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(-仝-)~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂((〃’⊥’〃))⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="○(・x・)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="◎▼◎" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（-Φ-）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊆（⌒◎⌒）⊇" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="≫(‘♀’)≪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（’∽’）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（≡・　x　・≡）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(∵)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Σ( ﾟωﾟ；≡⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´･ω･`)､" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´ω｀)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´・ω・)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(-仝-)~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="～&gt;゜）～～～～" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＞°）m～～～∈" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="～＞°）mニニニニ＝～" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(∩ё∩)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="～&gt;`)～～～" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="]＾：山" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="apologizing"><A href="#apologizing">Apologizing</A></H2><INPUT value="m(_ _)m" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="m(._.)m" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ｍ（．＿．）ｍ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ﾉ´д｀）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(シ_ _)シ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="&lt;(_ _)&gt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＜(。_。)＞" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ｍ（＿　＿；；ｍ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" m(￢0￢)m" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="bear"><A href="#bear">Bear</A></H2><INPUT value="(￣(エ)￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡･ω･｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(●｀･(ｴ)･´●)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*ノ・ω・）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="川´･ω･`川" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( (ﾐ´ω`ﾐ))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(T(エ)Tヽ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(・｀(ｪ)・)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂(ο･㉨･ο）⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^(エ)^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^(I)^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣(ｴ)￣)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂(￣(工)￣)⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂(^(工)^)⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂(・(ェ)・)⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*￣(ｴ)￣*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´(ｴ)｀ﾉﾞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(／(ｴ)＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂(￣(ｴ)￣)⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" “(`(エ)´)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (｀(エ)´)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (ó㉨ò)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(♥ó㉨ò)ﾉ♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (/-(ｴ)-＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (´(エ)｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ヽ(￣(ｴ)￣)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (／￣(ｴ)￣)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂(◎(工)◎)⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(●￣(ｴ)￣●)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" 《/(￣(ｴ)￣)ゞ》" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⁝⁞⁝⁞ʕु•̫͡•ʔु☂⁝⁞⁝⁝" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  (✪㉨✪)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="cat"><A href="#cat">Cat</A></H2><INPUT value="(=^･ｪ･^=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=^‥^=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=^･^=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="V(=^･ω･^=)v" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=｀ω´=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(^・x・^)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(=^‥^)/’`" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( =①ω①=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="d(=^･ω･^=)b" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=ＴェＴ=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=;ェ;=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(=^･ω･^=)丿" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=^･ω･^)y＝" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^-人-^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(^‥^=ゞ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^・ω・^ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=^-ω-^=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="b(=^‥^=)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(.=^・ェ・^=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（=´∇｀=）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(=ﾟ･ﾟ=)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(=^‥^)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(=^‥^)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=ｘェｘ=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=；ェ；=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=｀ェ´=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^･o･^)ﾉ”" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^._.^)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="└(=^‥^=)┐" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="=’①。①’=" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="confused"><A href="#confused">Confused</A></H2><INPUT value="(´･_･`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◎_◎;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｀_´)ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◎-◎；)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(・_・ヾ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣(エ)￣)ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-_-)ゞ゛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(‘◇’)?" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(゜Q。)ノ？" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´｀;) ？" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="【・ヘ・?】" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="【・_・?】" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ・◇・)？" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜-゜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´･ ･｀｡)ノ”" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｢(ﾟﾍﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ?´_ゝ｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(´^｀)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´−｀) ﾝｰ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(」ﾟヘﾟ)」" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(•ิ_•ิ)?" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="「(°ヘ°)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。ヘ°)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(゜Q。)ノ？" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´｀;) ？" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="〈(゜。゜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜。゜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="く（＾_・）ゝ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^～^;)ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ٩(͡๏̯͡๏)۶" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="٩(̾●̮̮̃̾•̃̾)۶" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(⊙_◎)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ಠ_ರೃ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="dancing"><A href="#dancing">Dancing</A></H2><INPUT value="ヘ(^_^ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ^_^)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(^^o)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o^^)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ´＿ゝ｀）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(^ ^ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ‥)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ﾉ^ω^)ﾉﾟ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(*´∇`)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(･ω･*)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*ﾉ´□`)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="。(⌒∇⌒。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。⌒∇⌒)。" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="〜(￣▽￣〜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(〜￣▽￣)〜" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="〜(^∇^〜）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（〜^∇^)〜" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="〜(￣△￣〜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(〜￣△￣)〜" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┗(｀ー´)┓" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┏(｀ー´)┛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┗(＾0＾)┓" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┏(＾0＾)┛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ￣ー￣)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(￣ー￣ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(￣ω￣ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ￣ω￣)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(^o^ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ^o^)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(-_- )ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(＠^∇^＠)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ≧∀≦)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(^ω^＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉﾟ▽ﾟ)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(ﾟｰﾟ*ヽ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*ﾟｰﾟ*)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ*ﾟｰﾟ)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*´Д｀*)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o´･_･)っ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(*д*)ﾉ゛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(°◇° )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ( °◇°)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ°ο°)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ･o･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(^^ゞ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(ﾟ∀ﾟゞ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´ー`)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ（*⌒ヮ⌒*）ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="〈( ^.^)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┌（★ｏ☆）┘" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="└（★ｏ★）┐" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♪(┌・。・)┌" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="dead"><A href="#dead">Dead</A></H2><INPUT value="（x_x；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*_*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(×_×;）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(×_×#" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(#+_+)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(+_+)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(×× ) ﾂ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（Ω_Ω）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="へ（&gt;_&lt;へ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(＊0＊;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(u_u)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (✖╭╮✖)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(º_º)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="٩(×̯×)۶" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ñ_ñ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o_-)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="defeat"><A href="#defeat">Defeat</A></H2><INPUT value="＼（－－）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(-___________-;)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="/(;-_-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(&gt;_&lt;。)＼" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((-_-))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ー△ー；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（◎ー◎；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/ _ ; )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o_ _)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ﾍ(￣ ￣;ﾍ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;*´Д`)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ_ _)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(_ _ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ￣д￣)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;-_-)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(-_-;*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ﾍ(;´Д｀ﾍ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;-_-)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(oT-T)尸" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ（´ｏ｀）ヘ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(一。一;;）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ#-_-)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（~～~）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="y-(~。~；)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(　-。-)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="dog"><A href="#dog">Dog</A></H2><INPUT value="Uo･ｪ･oU" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="∪･ω･∪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="U｡･ｪ･｡U" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="▽・ω・▽" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="▽・ｗ・▽" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ｕ^皿^Ｕ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ｖ・。・Ｖ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ＵＴｪＴＵ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^・(I)・^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="U・♀・U" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ｏ（Ｕ・ω・）⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^・x・^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(U・x・U)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="▼o・ェ・o▼" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="U＾ェ＾U" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="U￣ｰ￣U" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┌U･ｪ･U┘" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="└@(･ｪ･)@┐" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(●ω●)ノ Adventure time!" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(〓￣(∵エ∵)￣〓)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="drinking"><A href="#drinking">Drinking</A></H2><INPUT value="ｏ口(・∀・ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。・・)_且" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="且_(ﾟ◇ﾟ；)ノﾞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~旦_(^O^ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(　 ゜Д゜)⊃旦" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ´･ω･`)_且~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ^-^)_旦”&quot;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*^◇^)_旦" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*｀▽´)_旦~~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(=^‥^)_旦~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(＾-＾)＿日" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~~旦_(･o･;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( -_-)旦~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(＃´ー´)旦" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="且_(・_・ )" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="evil"><A href="#evil">Evil</A></H2><INPUT value="(・｀ω´・)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ψ(｀∇´)ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（｀ー´）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡･｀ω´･｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(｀ω´*)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="| ｀Д´|" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｀ε´)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(σ-`д･´)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｀Д´*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（=｀〜´=）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾒ｀ﾛ´)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ψ(｀▽´)Ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="^(#｀∀´)_Ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*-`ω´- )人" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ц｀ω´ц*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｀∀´)Ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ψ(*｀ー´)ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ψ(｀◇´)Ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="“ψ(｀∇´)ψ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="fish"><A href="#fish">Fish</A></H2><INPUT value="&gt;=&lt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="&gt;゜))))彡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ζ°)))彡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="&gt;_)))彡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="&gt;^)))&lt; ～～" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(°)#))&lt;&lt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（：。）ミ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ｃ：。ミ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(Q )) &gt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(°))&lt;&lt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="&gt;°))))彡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="≧〔゜゜〕≦" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ミ(・・)ミ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="V=(° °)=V" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＜コ：ミ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜))&lt;&lt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ミ[°°]ミ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="くコ:彡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ミ．．ミ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="friends"><A href="#friends">Friends</A></H2><INPUT value="ヽ(∀゜ )人( ゜∀)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*･∀･)／＼(･∀･*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（＾∀＾）メ（＾∀＾）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（★´−｀）人（´▽｀★）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（　＾＾）人（＾＾　）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(〃⌒▽⌒)八(〃⌒▽⌒〃)八(⌒▽⌒〃)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆-(ノﾟДﾟ)八(ﾟДﾟ )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ｡･_･｡)人(｡･_･｡ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*^ｰ^)人(^ｰ^*)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="━(○´ｴ｀)(´ｴ｀●)━" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◎｀・ω・´)人(´・ω・｀*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡*:★(´・ω・人・ω・`)｡:゜★｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´∀｀*人*´∀｀*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾▽＾）／＼（＾▽＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*＾ω＾）人（＾ω＾*）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(○´∀)乂(*´∀`*）乂(∀`●)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（＾∀＾）メ（＾∀＾）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´Д｀)人(´Д｀)人(´Д｀)ノ〜♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((*°▽°*)八(*°▽°*)))♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♡(*´∀｀*)人(*´∀｀*)♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(〃￣д￣)八( ￣д￣ )八(￣д￣〃)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(＾▽＾)人(＾▽＾)人(＾▽＾)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((＠°▽°＠)八(＠°▽°＠)))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(･_･”)/＼(･_･”)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(○｀ε´○)／＼(○｀ε´○)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ( ^o^)ノ＼(^_^ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/^-^(^ ^*)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( 。・_・。)人(。・_・。 )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(・_・)〆＼(Ｔ＿Ｔ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^^)-(^^)-(^^)-(^^)-(^^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´Д｀)人(´Д｀)人(´Д｀)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(￣ー￣)X(^∇^)ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♪ヽ( ⌒o⌒)人(⌒-⌒ )v ♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*^o^)人(^o^*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(　^o)( ^ 0 ^ )(o^　)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ（　＾＾）人（＾＾　）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(・_・”)／＼(・_・”)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="└(^o^ )Ｘ( ^o^)┘" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(＾○＾)オ(＾▽＾)ハ(＾０＾)ツ～" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ⌒o⌒)人(⌒-⌒ )v" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(°◇°人°◇°)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="greetings"><A href="#greetings">Greetings</A></H2><INPUT value="ヾ(＾∇＾)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^-^*)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ﾟ▽ﾟ)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ^_^)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^o^)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^ _ ^)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ´ ▽ ` )ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ´∀｀*)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´･ω･｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆ﾐ(o*･ω･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(＾▽＾*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*＾▽＾)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣▽￣)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(-_-;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ( ‘ – ‘*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(＠⌒ー⌒＠)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~ヾ ＾∇＾" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~ヾ(＾∇＾)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(￣O￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡･ω･)ﾉﾞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*^･ｪ･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣∠ ￣ )ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*￣Ｏ￣)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(｡´･_●･`｡)☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/・0・)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ^∇^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(,, ･∀･)ﾉ゛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。･д･)ﾉﾞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(°o°；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡´∀｀)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o´ω`o)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ･ω･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。^_・)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ・_・)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(-o- )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。-ω-)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(-_- )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼( ･_･)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´￢｀)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(☆▽☆)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^ Q ^)/゛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(＾◇^)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(‘◇’、)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(°◇、°)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(°￢°)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(゜Д、゜)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ ゜ρ゜)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ー( ´ ▽ ` )ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(๏∀๏ )ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="happy"><A href="#happy">Happy</A></H2><INPUT value="(●´∀｀●)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｀・ω・´)”" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(；▽；)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(；▽；)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´・ｖ・)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((o(*ﾟ▽ﾟ*)o)))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆*:.｡. o(≧▽≦)o .｡.:*☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(⌒▽⌒)☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊂((・▽・))⊃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(≧∇≦)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´∇ﾉ｀*)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（・◇・）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ´ ▽ ` )ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾_＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（￣ー￣）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*^▽^*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(＾▽＾)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（’-’*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="∩( ・ω・)∩" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*≧▽≦)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（＾ ＾）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ｏ(≧∇≦)Ｏ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（　´∀｀）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^～^)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（＠￣∇￣＠）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(☆^O^☆)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(★^O^★)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(☆^ー^☆)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´ω｀★)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（Ｔ∇Ｔ）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*≧ω≦)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="*(*´∀｀*)☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ｏ(≧▽≦)Ｏ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*⌒∇⌒*)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="d=(´▽｀)=b" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(*T▽T*)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(‘ ∇‘ )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*＾ワ＾*）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(＾Д＾)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´∀`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(°◇°;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜▽゜;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/^▽^)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ´ｰ`)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´ー`)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(　＾∇＾)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼( ｀.∀´)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(●⌒∇⌒●)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(≧∇≦o)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(｀◇´)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*・ω・)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾ω＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡◕‿◕｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙ω⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙△⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙▽⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o (◡‿◡✿)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◕‿◕✿)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(∩_∩)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡◕‿◕｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(•ิ_•ิ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/•ิ_•ิ)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ΦωΦ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*＾＾*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾⊆＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-^〇^-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ*゜▽゜*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´▽｀;)ゝ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜▼゜＊）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣个￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(^▽^＠)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(“⌒∇⌒”)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="へ(゜∇、°)へ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（-＾〇＾-）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＞ｙ＜）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(^。^)丿" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ヘ。ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾ｖ＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(@^▽^@)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(@°▽°@)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ（＠＾▽＾＠）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(＠^∇^＠)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o((*^▽^*))o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(@゜∇゜@)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(＠゜▽゜＠）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＠´＿｀＠）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(＠† ▽ †＠）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ＞▽＜。)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（＠；◇；＠）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(☆o◎)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((＼（＠v＠）／)))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(°◇°;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜▽゜;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o;TωT)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(;^o^ヽ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（⌒▽⌒ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="“ヽ(´▽｀)ノ”" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((o(*ﾟ▽ﾟ*)o)))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(＠⌒ー⌒＠)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Ψ(´▽｀)Ψ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ｖ＾＿＾）ｖ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  (ી(΄◞ิ౪◟ิ‵)ʃ)♥" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(❁´◡`❁)*✲ﾟ*" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ღ˘⌣˘ღ) ♫･*:.｡. .｡.:*･" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ლ(╹◡╹ლ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(✿◠‿◠)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◑‿◐)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ლ(́◉◞౪◟◉‵ლ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="✖‿✖" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*~▽~)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(─‿‿─)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="∩(︶▽︶)∩" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (︶ω︶)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(∩▂∩)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (¬‿¬)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (n˘v˘•)¬" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ಥ‿ಥ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="≖‿≖" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ʘ‿ʘ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="hiding"><A href="#hiding">Hiding</A></H2><INPUT value="|･ω･｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ﾍ(･_|" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｜−・;）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="|ω・）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="|_・)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="infatuation"><A href="#infatuation">Infatuation</A></H2><INPUT value="(´∀｀)♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(‘∀’●)♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*´▽｀*）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*°∀°)=3" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（´ω｀♡%）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(愛´∀｀愛)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♡o｡.(✿ฺ｡ ✿ฺ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡･ω･｡)ﾉ♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（●´∀｀）ノ♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♡＾▽＾♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡-_-｡ )人( ｡-_-｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(●♡∀♡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＿´ω｀）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´ ▽｀).。ｏ♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o⌒．⌒o)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（人´∀`*）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（〃・・〃）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♥（ﾉ´∀`）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ღ˘⌣˘ღ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡’▽’｡)♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  (●´□`)♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (｡♥‿♥｡)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(✿ ♥‿♥)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="♥╣[-_-]╠♥" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="kissing"><A href="#kissing">Kissing</A></H2><INPUT value="(´ε｀ )♡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="～(^з^)-☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="|°з°|" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＿ε＿）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(‘ε’)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="|(￣3￣)|" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（￣ε￣＠）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*＾3＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´ε｀*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(○´3｀)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(☆´3｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*￣з￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(づ￣ ³￣)づ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（○゜ε＾○）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(TεT)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-ε- )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＠ーεー＠）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*＾3＾）/～☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ლ(|||⌒εー|||)ლ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  (╯3╰)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (ΘεΘ;)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="laughing"><A href="#laughing">Laughing</A></H2><INPUT value="（・∀・）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（　´∀｀）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（⌒▽⌒）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾ｖ＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (*≧▽≦)ﾉｼ))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  (●´艸`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (*´艸`*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(｡ &gt;艸&lt;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*≧艸≦)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*・艸・)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="mellow"><A href="#mellow">Mellow</A></H2><INPUT value="ヽ（´ー｀）┌" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┗┐ヽ(′Д、`*)ﾉ┌┛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ( ´¬`)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┗┃・ ■ ・┃┛" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´A｀)ノﾟ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ（・＿・；)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(　￣д￣;)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（〇_ｏ）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(。_°)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(;´□｀)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(*´ー`)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(‘ー`)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(ー_ー )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´～｀；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="┐(‘～`；)┌" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ（*ω。）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;´・`)&gt;" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾～＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="╮(─▽─)╭" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ¯\_(ツ)_/¯" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="٩(-̮̮̃-̃)۶" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="٩(-̮̮̃•̃)۶" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="miscellaneous"><A href="#miscellaneous">Miscellaneous</A></H2><INPUT value="(´Д` )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="・゜・(ノД`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´Д｀ヽ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ゝ。∂）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-_＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( 　ﾟ,_ゝﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(･∀･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*´Д｀*)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="v(｡-_-｡)v" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾凹＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(　ﾟдﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/・・)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ･ｪ･)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(ﾟｰﾟ＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(‧”’‧)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◕〝◕)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( c//”-}{-*\x)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(◐ o ◑ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（;´_ヘ;）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（πーπ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="w(@。@;)w" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(●o○;)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(V)o\o;;(V)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＄０＄）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ｏ。ｏ；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ（゜◇、゜）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆⌒(*＾-°)v" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆⌒（＊＾∇゜）v" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="m{oYo}屮" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="*~●＞＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="━━☆＞＾）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（´・｀ ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^ц^ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="【:εω" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (๑ ऀืົཽ₍₍ළ₎₎ ऀืົཽ)✧" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ‹(•¿•)›" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(⊙ヮ⊙)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( °٢° )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  ( 　ﾟ,_ゝﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="monkey"><A href="#monkey">Monkey</A></H2><INPUT value="@(o･ｪ･)@" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="└@(･ｪ･)@┐" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(｡･o･)@" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(o･ｪ･o)@" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(/o･ｪ･o)@/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="@(*^ｪ^)@" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="mustache"><A href="#mustache">Mustache</A></H2><INPUT value="(´┏o┓｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ﾐ(´┏ω┓｀)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´┏･┓｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣┏Д┓￣°*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣┏Д┓￣ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ￣┏＿┓￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ≧┏Д┓≦)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣┏∞┓￣)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="painful"><A href="#painful">Painful</A></H2><INPUT value="☆⌒(＞。≪)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆￣(＞。☆)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="~(&gt;_&lt;~)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ(&gt;_&lt;ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。_＋)＼" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(xLx)ヾ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="/(*ι*)ヾ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノ&gt;ノ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="／(x~x)＼" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="◎☆（♯××）┘" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヘ（。□°）ヘ" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="pig"><A href="#pig">Pig</A></H2><INPUT value="( ´(00)`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(；ﾟ(OO)ﾟ)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*’(OO)’)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣(oo)￣)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(○｀（●●）´○)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*’(OO)’*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ´(00)`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(；ﾟ(OO)ﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´(00)`)’" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(*’(OO)’)ﾉﾟ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="q(￣(oo)￣)p" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡ﾟ(ﾟ´(00)`ﾟ)ﾟ｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣（∞）￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣(▽▽)￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(=｀(∞)´=)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="sad"><A href="#sad">Sad</A></H2><INPUT value="（ ; ; ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(T＿T)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ ＴДＴ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ToT)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(Ｔ▽Ｔ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(‘A`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（；_・）A single tear…" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(T_T)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((T.T； )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(； T.T))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（；へ：）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ノД`)・゜・。" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="・(/Д`)・" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´＿｀。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´Д｀。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´Ａ｀。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´∩｀。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡：ﾟ(｡ﾉω＼｡)ﾟ･｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(┳Д┳)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´；д；`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´；ェ；`*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡･ﾟﾟ･(&gt;д&lt;)･ﾟﾟ･｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。┰ω┰。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(゜´Д｀゜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（ｉДｉ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´；ω；`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="。ﾟ(ﾟﾉД｀ﾟ)ﾟ｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´□｀。)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾟ´Д｀ﾟ)ﾟ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="{{p´Д｀q}}" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(●ﾟ´Д｀ﾟ●)ﾉﾟ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( p_q)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=".・゜゜・（／。＼）・゜゜・．" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(个_个)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((´д｀))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ≧Д≦)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡゜(｀Д´)゜｡" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。┰ω┰。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="p(´⌒｀｡q)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/□＼*)・゜" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((o(;△;)o))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（；￣д￣）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ㄒoㄒ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙︿⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(╥﹏╥)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(；△；)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;*△*;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（´＿｀）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="╥﹏╥" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="  (´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (∩︵∩)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (╯︵╰,)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(︶︹︺)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (╥_╥)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (╯︵╰,)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="scared"><A href="#scared">Scared</A></H2><INPUT value="(ノдヽ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(ﾟДﾟ)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(／。＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（／_＼）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（／．＼）" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="shocked"><A href="#shocked">Shocked</A></H2><INPUT value="( ꒪Д꒪)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((( ;°Д°))))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((((；゜Д゜)))" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（゜◇゜）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（￣□￣；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="∑(O_O；)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(&gt;o&lt;)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="━Σ(ﾟДﾟ|||)━" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Σ(゜ロ゜;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="Σ(゜゜)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*ﾟﾛﾟ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(」゜ロ゜)」" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="щ(゜ロ゜щ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉﾟ0ﾟ)ﾉ~" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙▂⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙０⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="w(°ｏ°)w" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="L(・o・)」" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(○o○)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（・□・；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((((；゜Д゜)))" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="shy"><A href="#shy">Shy</A></H2><INPUT value="(^_^;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^^ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^^;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(#^.^#)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(‘-’*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*^^*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＠´＿｀＠）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(⌒_⌒;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(#｀ε´#ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（*/∇＼*）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(〃￣ω￣〃ゞ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´ｪ｀*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´∀`*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´_ゝ｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´∀`*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(/ω＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*ﾉ▽ﾉ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*ﾉωﾉ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（/｡＼)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（。-＿-。）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(#／。＼#)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (╯_╰)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(╯ಊ╰)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="singing"><A href="#singing">Singing</A></H2><INPUT value="ヾ(´□｀* )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾Ｏ＾☆♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(^o^)／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´▽｀)ノ♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="“ヽ(´▽｀)ノ”" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´▽｀；)/♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(´・｀)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(○´∀`)ﾉ♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´ρ｀)〃" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(´〇｀)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´△｀)♪" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ﾉ´▽｀)ﾉ♪" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="sleeping"><A href="#sleeping">Sleeping</A></H2><INPUT value="Σ(￣。￣ノ)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-ｪ-)｡o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;´ρ`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(*´ο`*)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ε-(´・｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼(o￣∇￣o)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（´Ｏ｀）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="［(－－)］zzz" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´～`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(。￣□￣)ﾂ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(￣0￣； )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(。￣□￣)ﾂ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヾ(￣□￣;)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(。-ω-)zzz" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-_-) zzz" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(∪｡∪)｡｡｡zzz" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(´〜｀*) zzz" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="∑(￣□￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(o´Д`)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（)´д`(）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（;≧皿≦）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（´□｀川）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ᕙ(⇀‸↼‶)ᕗ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (ι´Д｀)ﾉ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(ᴗ˳ᴗ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" ＿ﾉ乙(､ﾝ､)_" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="smug"><A href="#smug">Smug</A></H2><INPUT value="ー(￣～￣)ξ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(((￣へ￣井)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(`へ´*)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣^￣)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（￣へ￣）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（￣～￣;）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣ェ￣;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-、-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ；｀ヘ´)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="o(´^｀)o" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣ω￣;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（｀＾´）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="&lt;(￣︶￣)&gt;" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="winking"><A href="#winking">Winking</A></H2><INPUT value="（＾＿－）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(－ｏ⌒)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾＿−）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^_-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(^_−)☆" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(⌒.−)＝★" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾_-）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾＿・）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="๏[-ิ_•ิ]๏" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（○゜ε＾○）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（＾＿－）≡★" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="☆～（ゝ。∂）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＼（^０＾）／" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value=" (･ｪ-)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="worried"><A href="#worried">Worried</A></H2><INPUT value="(ーー;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ；´Д｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（；￣ェ￣）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(￣д￣;)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(￣◇￣;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ(￣д￣;)ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（−＿−；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(~_~;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="((*゜Д゜)ゞ”" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(･_-｡ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="⊙﹏⊙" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ミ●﹏☉ミ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(-’๏_๏’-)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(⊙…⊙ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="( ´△｀)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="(;° ロ°)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ヽ（゜ロ゜；）ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="（°o°；）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="｡:ﾟ*+;(●´･д･`●);+*ﾟ:｡" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV class="group"><H2 id="writing"><A href="#writing">Writing</A></H2><INPUT value="φ(￣ー￣ )ノ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(°ρ°*)メ" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＿φ(□□ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＿φ(￣ー￣ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(._.)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ（．．）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="___ψ(‥ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="ψ(。。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(◎◎ヘ)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＿φ( °-°)/" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＿φ(°-°=)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(◎◎へ）" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(^∇^ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="＿〆(。。)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(．．;)" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="φ(・ω・｀ )" size="1" type="text" class="kaomoji" readonly="readonly"><INPUT value="〆(・∀・＠)" size="1" type="text" class="kaomoji" readonly="readonly"></DIV><DIV id="footer"><A id="help" href="#">Help</A> / <A id="about" href="#">About</A></DIV></DIV><DIV id="modal-overlay"><DIV id="info-window"><P>Full source code at <A href="https://github.com/saikobee/kaomoji">GitHub</A></P><P>Kaomoji from <A href="http://www.japaneseemoticons.net/all-japanese-emoticons/">Japanese Emoticons</A></P><P>Background from <A href="http://www.stripegenerator.com/">Stripe Generator</A></P><SPAN id="copyright">&copy; 2013 <A href="http://saikobee.github.com">Brian Mock</A> &amp; <A href="http://www.kylepaulsen.com/">Kyle Paulsen</A></SPAN><DIV id="close-wrapper"><A href="#" id="close-button">Hide this message</A></DIV></DIV></DIV><DIV class="message" id="info-message"><H2>Tips and Tricks</H2><DIV class="tip">Click a kaomoji, then <DIV class="bind"><KBD class="modifier">Ctrl</KBD><KBD>C</KBD></DIV> to copy it.</DIV><DIV class="tip">Right click a kaomoji to favorite it, or a favorite to remove it.</DIV><DIV class="tip">Type into the box and hit Enter to add a custom kaomoji.</DIV><DIV id="hide-info-message-forever-container"><A href="#" id="hide-info-message-forever">Hide this message</A></DIV></DIV></BODY></HTML>
