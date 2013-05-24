@@ -17,6 +17,7 @@ embed:
 	EMBED=1 ./writer.rb </dev/null >embed.html
 dropbox:
 	EMBED=0 DEBUG=0 ./writer.rb </dev/null >~/Dropbox/Public/kaomoji/index.html
+	EMBED=1 DEBUG=0 ./writer.rb </dev/null >~/Dropbox/Public/kaomoji/embed.html
 	cp bg.png ~/Dropbox/Public/kaomoji
 github:
 	./deploy-github.sh

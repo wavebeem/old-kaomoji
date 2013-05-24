@@ -10,6 +10,19 @@
 // @grant         none
 // ==/UserScript==
 
+/**
+*** Copyright © 2013 Brian Mock & Kyle Paulsen <binary.elk@gmail.com>
+*** This work is free. You can redistribute it and/or modify it under the
+*** terms of the Do What The Fuck You Want To Public License, Version 2,
+*** as published by Sam Hocevar. See the COPYING file for more details.
+***
+*** This program is free software. It comes without any warranty, to
+*** the extent permitted by applicable law. You can redistribute it
+*** and/or modify it under the terms of the Do What The Fuck You Want
+*** To Public License, Version 2, as published by Sam Hocevar. See
+*** http://www.wtfpl.net/ for more details.
+**/
+
 (function() {
   // Don't run in frames
   try {
@@ -118,7 +131,7 @@
   var LS = window.localStorage;
   var remoteHost = LS.BinaryElk_Kaomoji_DebugMode === "true"
     ? LS.BinaryElk_Kaomoji_RemoteHost || "http://kaomoji.binaryelk.com/kaomoji/embed.html"
-    : 'https://dl.dropboxusercontent.com/u/2145242/kaomoji.html';
+    : 'https://dl.dropboxusercontent.com/u/40887731/kaomoji/embed.html';
 
   var iframe = $create('iframe',
     {
