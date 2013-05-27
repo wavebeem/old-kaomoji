@@ -156,8 +156,10 @@ function removeEmoteFavorite(text) {
 
 function makeEmote(text) {
     var newEmote;
+    var elemId = "favorite-" + stringToHex(text);
     if (EMBED) {
         newEmote = $create("button", {
+            id          : elemId,
             className   : "kaomoji",
             type        : "button",
         }, {});
@@ -166,6 +168,7 @@ function makeEmote(text) {
     }
     else {
         newEmote = $create("input", {
+            id          : elemId,
             className   : "kaomoji",
             type        : "text",
             value       : text,
@@ -255,6 +258,55 @@ function toggleFavorite(elem) {
     }
 }
 
+function stringToHex(t) {
+    var i = 0;
+    var n = t.length;
+    var T = "";
+
+    while (i < n) {
+        T += t.charCodeAt(i).toString(16);
+        i++;
+    }
+
+    return T;
+}
+
+listen(window, "storage", function(e) {
+    var msg;
+    var arg;
+    if (e.key.charAt(0) === '*') {
+        delete localStorage[e.key];
+        msg = e.key.substring(1);
+        arg = e.newValue;
+        arg = JSON.parse(arg || "{}");
+        callHandler(msg, arg);
+    }
+});
+
+function callHandler(name, obj) {
+    messageHandlers[name].call(obj, obj);
+}
+
+var messageHandlers = {
+    toggleFavorite: function() {
+        var elem = id(this.id);
+        console.log(this.id);
+
+        if (elem) {
+            toggleFavorite(elem);
+        }
+    },
+};
+
+function sendMessage(name, obj) {
+    localStorage["*" + name] = JSON.stringify(obj);
+}
+
+function sendMessageAll(name, obj) {
+    callHandler(name, obj);
+    sendMessage(name, obj);
+}
+
 try {
     store = JSON.parse(localStorage.favorites);
 }
@@ -327,7 +379,7 @@ listen(window, "DOMContentLoaded", function(event) {
         var elem = e.target;
         if (hasClass(elem, "kaomoji")) {
             e.preventDefault();
-            toggleFavorite(elem);
+            sendMessageAll("toggleFavorite", { id: elem.id });
         }
         clearSelection();
     });

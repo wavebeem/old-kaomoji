@@ -225,14 +225,17 @@ def kaomoji_items
 end
 
 def kaomoji txt
+    id = "kaomoji-" + txt.chars.map{|c| c.ord.to_s(16) }.join
     if EMBED
         $cgi.button(
+            :id     => id,
             :type   => "button",
             :class  => "kaomoji",
             :"data-text" => txt,
         ) { txt }
     else
         $cgi.input(
+            :id       => id,
             :value    => txt,
             :size     => "1",
             :type     => "text",
