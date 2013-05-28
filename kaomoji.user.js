@@ -111,13 +111,11 @@
       balloon.style.display = 'none';
     },
     moveLeft: function() {
-      console.log("Moving left");
       balloon.style.left = "0";
       balloon.style.right = "";
       balloon.style.marginBottom = "32px";
     },
     moveRight: function() {
-      console.log("Moving right");
       balloon.style.right = "0";
       balloon.style.left = "";
       balloon.style.marginBottom = "10px";
