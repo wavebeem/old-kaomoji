@@ -207,10 +207,11 @@ function highlightFavorites(toHighlight) {
         ? store
         : [toHighlight];
 
-    allEmotes.forEach(function(btn) {
-        var text = kaomojiText(btn);
-        if (toHighlight.indexOf(text) >= 0) {
-            addClass(btn, "favorited");
+    toHighlight.forEach(function(t) {
+        var i = "kaomoji-" + stringToHex(t);
+        var e = id(i);
+        if (e) {
+            addClass(e, "favorited");
         }
     });
 }
@@ -235,26 +236,26 @@ function unhighlightFavorite(elements, text, remove) {
     }
 }
 
-function toggleFavorite(elem) {
-    var text = kaomojiText(elem);
+function removeElement(elem) {
+    if (elem && elem.parentNode) {
+        elem.parentNode.removeChild(elem);
+    }
+}
 
-    // Removing favorite from favorites group
-    if (elem.parentNode.id === "favorites-group") {
-        unhighlightFavorite(allEmotes, text, false);
+function toggleFavorite(elemId) {
+    var hex  = elemId.split('-')[1];
+    var fave = id("favorite-" + hex);
+    var emot = id("kaomoji-"  + hex);
+    var text = kaomojiText(emot || fave);
+
+    if (fave) {
         removeEmoteFavorite(text);
-        favorites.removeChild(elem);
+        favorites.removeChild(fave);
+        removeClass(emot, "favorited");
     }
-    // Toggle favorite from any other group
-    else if (hasClass(elem, "favorited")) {
-        var favoriteEmotes = query(".kaomoji", favorites);
-        unhighlightFavorite(favoriteEmotes, text, true);
-        removeEmoteFavorite(text);
-        removeClass(elem, "favorited");
-    }
-    // Add favorite
     else {
         addEmoteFavorite(text);
-        addClass(elem, "favorited");
+        addClass(emot, "favorited");
     }
 }
 
@@ -288,14 +289,7 @@ function callHandler(name, obj) {
 }
 
 var messageHandlers = {
-    toggleFavorite: function() {
-        var elem = id(this.id);
-        console.log(this.id);
-
-        if (elem) {
-            toggleFavorite(elem);
-        }
-    },
+    toggleFavorite: function() { toggleFavorite(this.id) },
 };
 
 function sendMessage(name, obj) {
