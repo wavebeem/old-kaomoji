@@ -11,6 +11,29 @@
 
 "use strict";
 
+var UA = window.navigator.userAgent;
+var isOsx = /Macintosh/.exec(UA);
+var groupIndex = 1;
+var slice = [].slice;
+var max = Math.max;
+var min = Math.min;
+var newEmote;
+var picker;
+var store;
+var favorites;
+var allEmotes;
+var closeButt;
+var overlay;
+var help;
+var about;
+var infoMsg;
+var hideHelp;
+
+var K = {
+    ESC     : 27,
+    ENTER   : 13,
+};
+
 function $create(ele, attrs, styles) {
     var ele = document.createElement(ele);
     for (var attr in attrs) {
@@ -32,7 +55,6 @@ function listen(elem, name, callback, bubble) {
     elem.addEventListener(name, callback, !!bubble);
 }
 
-var slice = [].slice;
 function query(s, e) {
     e = e || document;
     return slice.call(e.querySelectorAll(s));
@@ -58,8 +80,6 @@ function hasClass(elem, klass) {
     return elem.classList.contains(klass);
 }
 
-var max = Math.max;
-var min = Math.min;
 function clamp(x, a, b) {
     return max(min(x, b), a);
 }
@@ -68,7 +88,6 @@ function chr(code) {
     return String.fromCharCode(code);
 }
 
-var groupIndex = 1;
 function jumpBy(offset) {
     var n = picker.length - 1;
     groupIndex = clamp(groupIndex + offset, 1, n);
@@ -103,25 +122,21 @@ function clearSelection() {
 }
 
 function populateFavorites() {
-    var newEmote = $create("input", {
+    newEmote = $create("input", {
         type        : "text",
         id          : "new-kaomoji-input",
         placeholder : "add custom kaomoji...",
     }, {});
 
-    listen(newEmote, "blur", function() {
+    listen(newEmote, "blur", function(e) {
         if (newEmote.value.length > 0) {
-            addEmoteFavorite(newEmote.value);
-            highlightFavorites(newEmote.value);
-            newEmote.value = "";
+            sendMessageAll("addFavorite", { text: newEmote.value });
         }
     });
 
     listen(newEmote, "keydown", function(e) {
-        if (newEmote.value.length > 0 && e.which === K.ENTER) {
-            addEmoteFavorite(newEmote.value);
-            highlightFavorites(newEmote.value);
-            newEmote.value = "";
+        if (e.which === K.ENTER && newEmote.value.length > 0) {
+            sendMessageAll("addFavorite", { text: newEmote.value });
         }
     });
 
@@ -130,6 +145,14 @@ function populateFavorites() {
     highlightFavorites();
 
     store.forEach(makeEmote);
+}
+
+function addFavorite(text) {
+    if (text && text.length > 0) {
+        addEmoteFavorite(text);
+        highlightFavorites(text);
+        newEmote.value = "";
+    }
 }
 
 function saveFaves() {
@@ -141,6 +164,13 @@ function saveFaves() {
 }
 
 function addEmoteFavorite(text) {
+    var elemId = "favorite-" + stringToHex(text);
+
+    // Don't add duplicate favorites
+    if (id(elemId)) {
+        return;
+    }
+
     store.push(text);
     makeEmote(text);
     saveFaves();
@@ -155,19 +185,20 @@ function removeEmoteFavorite(text) {
 }
 
 function makeEmote(text) {
-    var newEmote;
+    var emo;
     var elemId = "favorite-" + stringToHex(text);
+
     if (EMBED) {
-        newEmote = $create("button", {
+        emo = $create("button", {
             id          : elemId,
             className   : "kaomoji",
             type        : "button",
         }, {});
-        newEmote.setAttribute("data-text", text);
-        newEmote.appendChild(document.createTextNode(text));
+        emo.setAttribute("data-text", text);
+        emo.appendChild(document.createTextNode(text));
     }
     else {
-        newEmote = $create("input", {
+        emo = $create("input", {
             id          : elemId,
             className   : "kaomoji",
             type        : "text",
@@ -177,24 +208,8 @@ function makeEmote(text) {
         }, {});
     }
 
-    favorites.insertBefore(newEmote, id("new-kaomoji-input"));
+    favorites.insertBefore(emo, id("new-kaomoji-input"));
 }
-
-var picker;
-var store = [];
-var favorites;
-var allEmotes;
-var closeButt;
-var overlay;
-var help;
-var about;
-var infoMsg;
-var hideHelp;
-
-var K = {
-    ESC     : 27,
-    ENTER   : 13,
-};
 
 function kaomojiText(elem) {
     return EMBED
@@ -216,26 +231,6 @@ function highlightFavorites(toHighlight) {
     });
 }
 
-function unhighlightFavorite(elements, text, remove) {
-    var i = 0;
-    var n = elements.length;
-    for (; i < n; ++i) {
-        var elem = elements[i];
-
-        if (kaomojiText(elem) !== text)
-            continue;
-
-        if (remove) {
-            elem.parentNode.removeChild(elem);
-            break;
-        }
-        else if (elem.parentNode.id !== "favorites-group") {
-            removeClass(elem, "favorited");
-            break;
-        }
-    }
-}
-
 function removeElement(elem) {
     if (elem && elem.parentNode) {
         elem.parentNode.removeChild(elem);
@@ -251,11 +246,15 @@ function toggleFavorite(elemId) {
     if (fave) {
         removeEmoteFavorite(text);
         favorites.removeChild(fave);
-        removeClass(emot, "favorited");
+        if (emot) {
+            removeClass(emot, "favorited");
+        }
     }
     else {
         addEmoteFavorite(text);
-        addClass(emot, "favorited");
+        if (emot) {
+            addClass(emot, "favorited");
+        }
     }
 }
 
@@ -275,7 +274,7 @@ function stringToHex(t) {
 listen(window, "storage", function(e) {
     var msg;
     var arg;
-    if (e.key.charAt(0) === '*') {
+    if (e.key.charAt(0) === '*' && e.newValue !== null) {
         delete localStorage[e.key];
         msg = e.key.substring(1);
         arg = e.newValue;
@@ -289,7 +288,8 @@ function callHandler(name, obj) {
 }
 
 var messageHandlers = {
-    toggleFavorite: function() { toggleFavorite(this.id) },
+    toggleFavorite  : function() { toggleFavorite(this.id) },
+    addFavorite     : function() { addFavorite(this.text) },
 };
 
 function sendMessage(name, obj) {
@@ -297,18 +297,16 @@ function sendMessage(name, obj) {
 }
 
 function sendMessageAll(name, obj) {
-    callHandler(name, obj);
     sendMessage(name, obj);
+    callHandler(name, obj);
 }
 
 try {
     store = JSON.parse(localStorage.favorites);
 }
 catch (e) {
+    store = [];
 }
-
-var UA = window.navigator.userAgent;
-var isOsx = /Macintosh/.exec(UA);
 
 listen(window, "DOMContentLoaded", function(event) {
     allEmotes = query(".kaomoji");
