@@ -100,9 +100,9 @@ def body
     $cgi.div(:id => "modal-overlay") {
         $cgi.div(:id => "info-window") {
             info_window_contents
-        }
-    } +
-    info_message
+        } +
+        info_message
+    }
 end
 
 def how_to_copy
@@ -246,7 +246,7 @@ def kaomoji txt
 end
 
 def kaomoji_groups
-    $cgi.div(:id => "jump-to") { "Jump to..." } +
+    $cgi.div(:id => "jump-to") { "Favorites" } +
     $cgi.select(:id => "picker") {
         $cgi.option(:value => "_", :disabled => "disabled") { "Jump to..." } +
         $cgi.option(:value => "favorites") { "Favorites" } +

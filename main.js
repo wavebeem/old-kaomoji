@@ -27,7 +27,9 @@ var overlay;
 var help;
 var about;
 var infoMsg;
+var infoWin;
 var hideHelp;
+var headers;
 
 var K = {
     ESC     : 27,
@@ -308,7 +310,42 @@ catch (e) {
     store = [];
 }
 
+function totalOffsetY(elem) {
+    return elem
+        ? (elem.offsetTop || 0) + totalOffsetY(elem.offsetParent)
+        : 0;
+}
+
+function viewportOffsetY() {
+    return document.body.scrollTop;
+}
+
+function capitalize(s) {
+    var x  = s.charAt(0);
+    var xs = s.substring(1);
+
+    return x.toUpperCase() + xs;
+}
+
+function updateJumpToIndex() {
+    var e = headers[0];
+    var h = viewportOffsetY();
+    var n = headers.length;
+    var i = 1;
+    for (; i < n; i++) {
+        e = headers[i];
+        if (totalOffsetY(e) > h) {
+            break;
+        }
+    }
+    e = headers[i - 1] || e;
+    id("jump-to").innerHTML = capitalize(e.id);
+}
+
+listen(window, "scroll", updateJumpToIndex);
+
 listen(window, "DOMContentLoaded", function(event) {
+    headers   = query(".group h2");
     allEmotes = query(".kaomoji");
     picker    = id("picker");
     favorites = id("favorites-group");
@@ -317,12 +354,15 @@ listen(window, "DOMContentLoaded", function(event) {
     help      = id("help");
     about     = id("about");
     infoMsg   = id("info-message");
+    infoWin   = id("info-window");
     hideHelp  = id("hide-info-message-forever");
 
     picker.selectedIndex = 0;
 
     if (localStorage.display_tips !== "false") {
-        infoMsg.style.display = "block";
+        infoWin.style.display = "none";
+        infoMsg.style.display = "inline-block";
+        overlay.style.display = "block";
     }
 
     // Replace "Ctrl" with the OS X "Command" key
@@ -332,23 +372,31 @@ listen(window, "DOMContentLoaded", function(event) {
     });
 
     listen(hideHelp, "click", function(e) {
-        e.preventDefault();
+        infoWin.style.display = "none";
         infoMsg.style.display = "none";
+        overlay.style.display = "none";
         localStorage.display_tips = "false";
+        e.preventDefault();
     });
 
     listen(closeButt, "click", function(e) {
+        infoWin.style.display = "none";
+        infoMsg.style.display = "none";
         overlay.style.display = "none";
         e.preventDefault();
     });
 
     listen(help, "click", function(e) {
-        infoMsg.style.display = "block";
+        infoWin.style.display = "none";
+        infoMsg.style.display = "inline-block";
+        overlay.style.display = "block";
         localStorage.display_tips = "true";
         e.preventDefault();
     });
 
     listen(about, "click", function(e) {
+        infoWin.style.display = "inline-block";
+        infoMsg.style.display = "none";
         overlay.style.display = "block";
         e.preventDefault();
     });

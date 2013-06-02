@@ -360,6 +360,9 @@ h1,
 
     padding: 9px;
 
+    padding-left:  0px;
+    padding-right: 0px;
+
     border-radius: 2px;
 
     background-color: #fff;
@@ -372,18 +375,6 @@ h1,
     background-color: #FCF4B0;
 
     max-width: 200px;
-
-    position: fixed;
-
-    padding-top:     6px;
-    padding-bottom: 13px;
-    padding-left:    0px;
-    padding-right:   0px;
-
-    top:    0px;
-    right:  0px;
-
-    margin: 6px;
 
     z-index: 100;
 }
@@ -440,6 +431,7 @@ h1,
 
 #info-message div {
     margin-top: 9px;
+    margin-bottom: 3px;
     text-align: center;
 }
 

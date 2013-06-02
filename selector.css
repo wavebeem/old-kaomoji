@@ -20,6 +20,14 @@
     color: #444;
 }
 
+#picker {
+    position: absolute;
+    top:    0px;
+    bottom: 0px;
+    left:   0px;
+    right:  0px;
+}
+
 .toolbar {
     position: fixed;
 
@@ -58,13 +66,12 @@
 #jump-to {
     cursor: pointer;
 
-    position: fixed;
-    content: "Jump to...";
-    top:  2px;
-    left: 7px;
-
     margin:  0px;
-    padding: 0px;
+
+    padding-top:     4px;
+    padding-bottom:  6px;
+    padding-left:    8px;
+    padding-right:  10px;
 
     font-size:  16px;
     line-height: 16px;
