@@ -1,3 +1,2 @@
  This is generated output from the the Kaomoji Picker program written by Brian
- Mock and Kyle Paulsen. For more information, visit
- https://github.com/saikobee/kaomoji
+ Mock. For more information, visit https://github.com/saikobee/kaomoji
