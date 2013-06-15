@@ -24,6 +24,7 @@ var favorites;
 var allEmotes;
 var closeButt;
 var overlay;
+var jumpTo;
 var help;
 var about;
 var infoMsg;
@@ -312,12 +313,12 @@ catch (e) {
 
 function totalOffsetY(elem) {
     return elem
-        ? (elem.offsetTop || 0) + totalOffsetY(elem.offsetParent)
+        ? (elem.offsetTop || 0) + totalOffsetY(elem.offsetParent || elem.parentNode)
         : 0;
 }
 
 function viewportOffsetY() {
-    return document.body.scrollTop;
+    return document.body.scrollTop || document.body.parentNode.scrollTop;
 }
 
 function capitalize(s) {
@@ -328,18 +329,22 @@ function capitalize(s) {
 }
 
 function updateJumpToIndex() {
+    if (! headers) return;
+
+    var o;
     var e = headers[0];
     var h = viewportOffsetY();
     var n = headers.length;
     var i = 1;
     for (; i < n; i++) {
         e = headers[i];
-        if (totalOffsetY(e) > h) {
+        o = totalOffsetY(e);
+        if (o > h) {
             break;
         }
     }
     e = headers[i - 1] || e;
-    id("jump-to").innerHTML = capitalize(e.id);
+    jumpTo.innerHTML = capitalize(e.id);
 }
 
 listen(window, "scroll", updateJumpToIndex);
@@ -347,6 +352,7 @@ listen(window, "scroll", updateJumpToIndex);
 listen(window, "DOMContentLoaded", function(event) {
     headers   = query(".group h2");
     allEmotes = query(".kaomoji");
+    jumpTo    = id("jump-to");
     picker    = id("picker");
     favorites = id("favorites-group");
     closeButt = id("close-button");
