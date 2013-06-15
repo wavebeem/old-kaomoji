@@ -37,6 +37,8 @@ var K = {
     ENTER   : 13,
 };
 
+function noop() {}
+
 function $create(ele, attrs, styles) {
     var ele = document.createElement(ele);
     for (var attr in attrs) {
@@ -133,13 +135,13 @@ function populateFavorites() {
 
     listen(newEmote, "blur", function(e) {
         if (newEmote.value.length > 0) {
-            sendMessageAll("addFavorite", { text: newEmote.value });
+            addFavorite(newEmote.value);
         }
     });
 
     listen(newEmote, "keydown", function(e) {
         if (e.which === K.ENTER && newEmote.value.length > 0) {
-            sendMessageAll("addFavorite", { text: newEmote.value });
+            addFavorite(newEmote.value);
         }
     });
 
@@ -159,11 +161,7 @@ function addFavorite(text) {
 }
 
 function saveFaves() {
-    try {
-        localStorage.favorites = JSON.stringify(store);
-    }
-    catch (e) {
-    }
+    storage.set("favorites", JSON.stringify(store));
 }
 
 function addEmoteFavorite(text) {
@@ -274,43 +272,6 @@ function stringToHex(t) {
     return T;
 }
 
-listen(window, "storage", function(e) {
-    var msg;
-    var arg;
-    if (e.key.charAt(0) === '*' && e.newValue !== null) {
-        delete localStorage[e.key];
-        msg = e.key.substring(1);
-        arg = e.newValue;
-        arg = JSON.parse(arg || "{}");
-        callHandler(msg, arg);
-    }
-});
-
-function callHandler(name, obj) {
-    messageHandlers[name].call(obj, obj);
-}
-
-var messageHandlers = {
-    toggleFavorite  : function() { toggleFavorite(this.id) },
-    addFavorite     : function() { addFavorite(this.text) },
-};
-
-function sendMessage(name, obj) {
-    localStorage["*" + name] = JSON.stringify(obj);
-}
-
-function sendMessageAll(name, obj) {
-    sendMessage(name, obj);
-    callHandler(name, obj);
-}
-
-try {
-    store = JSON.parse(localStorage.favorites);
-}
-catch (e) {
-    store = [];
-}
-
 function totalOffsetY(elem) {
     return elem
         ? (elem.offsetTop || 0) + totalOffsetY(elem.offsetParent || elem.parentNode)
@@ -347,7 +308,40 @@ function updateJumpToIndex() {
     jumpTo.innerHTML = capitalize(e.id);
 }
 
+var storage = {};
+if (EMBED) {
+    storage.get = function(key, cb) {
+        cb = cb || noop;
+        chrome.storage.sync.get(key, function(obj) {
+            cb(obj[key]);
+        });
+    };
+
+    storage.set = function(key, val, cb) {
+        cb = cb || noop;
+        chrome.storage.sync.set(key, val, cb);
+    };
+}
+else {
+    storage.get = function(key, cb) {
+        cb = cb || noop;
+        cb(localStorage[key]);
+    };
+
+    storage.set = function(key, val, cb) {
+        cb = cb || noop;
+        localStorage[key] = val;
+        cb();
+    };
+}
+
 listen(window, "scroll", updateJumpToIndex);
+
+storage.get("favorites", function(favorites) {
+    store = favorites
+        ? JSON.parse(favorites)
+        : [];
+});
 
 listen(window, "DOMContentLoaded", function(event) {
     headers   = query(".group h2");
@@ -365,11 +359,13 @@ listen(window, "DOMContentLoaded", function(event) {
 
     picker.selectedIndex = 0;
 
-    if (localStorage.display_tips !== "false") {
-        infoWin.style.display = "none";
-        infoMsg.style.display = "inline-block";
-        overlay.style.display = "block";
-    }
+    storage.get("display_tips", function(display_tips) {
+        if (display_tips !== "false") {
+            infoWin.style.display = "none";
+            infoMsg.style.display = "inline-block";
+            overlay.style.display = "block";
+        }
+    });
 
     // Replace "Ctrl" with the OS X "Command" key
     if (isOsx) query("kbd.modifier").forEach(function(mod) {
@@ -381,7 +377,7 @@ listen(window, "DOMContentLoaded", function(event) {
         infoWin.style.display = "none";
         infoMsg.style.display = "none";
         overlay.style.display = "none";
-        localStorage.display_tips = "false";
+        storage.set("display_tips", "false");
         e.preventDefault();
     });
 
@@ -396,7 +392,7 @@ listen(window, "DOMContentLoaded", function(event) {
         infoWin.style.display = "none";
         infoMsg.style.display = "inline-block";
         overlay.style.display = "block";
-        localStorage.display_tips = "true";
+        storage.set("display_tips", "true");
         e.preventDefault();
     });
 
@@ -425,7 +421,7 @@ listen(window, "DOMContentLoaded", function(event) {
         var elem = e.target;
         if (hasClass(elem, "kaomoji")) {
             e.preventDefault();
-            sendMessageAll("toggleFavorite", { id: elem.id });
+            toggleFavorite(elem.id);
         }
         clearSelection();
     });

@@ -62,10 +62,11 @@ def viewport
 end
 
 def env_vars
-    inline_js <<JS
+    File.write "env.js", <<JS
 var DEBUG = #{DEBUG};
 var EMBED = #{EMBED};
 JS
+    js "env.js"
 end
 
 def head
@@ -76,7 +77,6 @@ def head
     css("selector.css") +
     (EMBED ? "" : css("stalone.css")) +
     (EMBED ? css("embed.css") : "" ) +
-    css("icon-font.css") +
 
     env_vars +
 
@@ -90,7 +90,6 @@ def body
     $cgi.div(:id => "groups", :class => "toolbar") {
         kaomoji_groups
     } +
-    (EMBED ? embed_toolbar : "") +
     $cgi.div(:id => "container") {
         (EMBED ? "" : $cgi.h1 { "Kaomoji Picker" }) +
         kaomoji_items +
@@ -131,15 +130,6 @@ def info_message
                 "Hide this message"
             }
         }
-    }
-end
-
-def embed_toolbar
-    $cgi.div(:id => "embed-toolbar", :class => "toolbar") {
-        # %w[left right].map{|d| dir_button d }.join
-        dir_button("left") +
-        " Dock " +
-        dir_button("right")
     }
 end
 
