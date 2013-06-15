@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-### Copyright © 2013 Brian Mock & Kyle Paulsen <binary.elk@gmail.com>
+### Copyright © 2013 Brian Mock <mock.brian+kaomoji@gmail.com>
 ### This work is free. You can redistribute it and/or modify it under the
 ### terms of the Do What The Fuck You Want To Public License, Version 2,
 ### as published by Sam Hocevar. See the COPYING file for more details.
@@ -14,7 +14,7 @@ require "cgi"
 require "json"
 
 $cgi    = CGI.new("html4")
-$moji   = JSON.parse(File.read("kaomoji.json"))
+$moji   = JSON.parse(File.read("data.json"))
 $header = File.read("header-logo.txt") + "\n" + File.read("header-text.txt")
 
 def env_bool? name, fallback=false
@@ -74,7 +74,6 @@ def head
 
     css("style.css") +
     css("selector.css") +
-    # css("scrollbars.css") +
     (EMBED ? "" : css("stalone.css")) +
     (EMBED ? css("embed.css") : "" ) +
     css("icon-font.css") +
@@ -84,7 +83,7 @@ def head
     js("main.js") +
     (EMBED ? js("ext.js") : "") +
 
-    $cgi.title { "Kaomoji Selector :: Brian Mock & Kyle Paulsen" }
+    $cgi.title { "Kaomoji Selector :: Brian Mock" }
 end
 
 def body
@@ -184,10 +183,6 @@ def copyright
         "&copy; 2013 " +
         $cgi.a(:href => "http://saikobee.github.com") {
             "Brian Mock"
-        } +
-        " &amp; " +
-        $cgi.a(:href => "http://www.kylepaulsen.com/") {
-            "Kyle Paulsen"
         }
     }
 end
