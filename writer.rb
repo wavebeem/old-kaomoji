@@ -76,7 +76,6 @@ def head
     css("selector.css") +
     (EMBED ? "" : css("stalone.css")) +
     (EMBED ? css("embed.css") : "" ) +
-    css("icon-font.css") +
 
     env_vars +
 
