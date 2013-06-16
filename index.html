@@ -725,7 +725,9 @@ function selectText(elem) {
 
 function tryToCopyText() {
     try {
-        document.execCommand("copy");
+        if (! document.execCommand("copy")) {
+            console.log("Failed to copy to clipboard");
+        }
     }
     catch (e) {
         console.error(e.message);
