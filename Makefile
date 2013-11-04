@@ -21,5 +21,5 @@ data:
 	./scraper.rb >data.json
 
 dist: standalone
-	cp -v style.css selector.css stalone.css index.html main.js dist/
+	cp -v bg.png style.css selector.css stalone.css index.html main.js dist/
 	./deploy.sh
