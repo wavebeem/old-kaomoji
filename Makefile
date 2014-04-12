@@ -15,8 +15,8 @@ standalone:
 	EMBED=0 ./writer.rb </dev/null >index.html
 embed:
 	EMBED=1 ./writer.rb </dev/null >embed.html
-github:
-	./deploy-github.sh
+deploy:
+	./deploy.sh
 data:
 	./scraper.rb >data.json
 
